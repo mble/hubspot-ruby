@@ -12,6 +12,7 @@ module Hubspot
     RECENT_UPDATED_PATH = "/deals/v1/deal/recent/modified"
     UPDATE_DEAL_PATH = '/deals/v1/deal/:deal_id'
     ASSOCIATE_DEAL_PATH = '/deals/v1/deal/:deal_id/associations/:OBJECTTYPE?id=:objectId'
+    PAGED_DEALS_PATH = '/deals/v1/deal/paged?includeAssociations=true&properties=dealname&properties=dealstage&properties=amount'
 
     attr_reader :properties
     attr_reader :portal_id
@@ -46,7 +47,7 @@ module Hubspot
          object_ids = (company_ids.any? ? company_ids : vids).join('&id=')
          Hubspot::Connection.put_json(ASSOCIATE_DEAL_PATH, params: { deal_id: deal_id, OBJECTTYPE: objecttype, objectId: object_ids}, body: {})
        end
- 
+
 
       def find(deal_id)
         response = Hubspot::Connection.get_json(DEAL_PATH, { deal_id: deal_id })
@@ -62,6 +63,12 @@ module Hubspot
         response['results'].map { |d| new(d) }
       end
 
+      # Find all deals
+      # {http://developers.hubspot.com/docs/methods/deals/get-all-deals}
+      def all(opts = {})
+        response = Hubspot::Connection.get_json(PAGED_DEALS_PATH, opts)
+        response['deals'].map { |d| new(d) }
+      end
     end
 
     # Archives the contact in hubspot

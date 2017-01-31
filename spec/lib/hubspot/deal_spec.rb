@@ -65,6 +65,33 @@ describe Hubspot::Deal do
     end
   end
 
+  describe '.all' do
+    cassette 'find_all_deals'
+
+    it 'must get all the deals' do
+      deals = Hubspot::Deal.all
+
+      first = deals.first
+      last = deals.last
+
+      expect(first).to be_a Hubspot::Deal
+      expect(first.properties['dealname']).to eql 'Company'
+      expect(first.properties['dealstage']).to eql 'qualifiedtobuy'
+      expect(first.properties['amount']).to eql '40'
+
+      expect(last).to be_a Hubspot::Deal
+      expect(last.properties['dealname']).to eql 'Cool Deal'
+      expect(last.properties['dealstage']).to be_nil
+      expect(last.properties['amount']).to eql '60000'
+    end
+
+    it 'is limited to 100 records by default' do
+      deals = Hubspot::Deal.all
+
+      expect(deals.size).to eql 100
+    end
+  end
+
   describe '#destroy!' do
     cassette 'destroy_deal'
 
