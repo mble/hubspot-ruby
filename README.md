@@ -45,7 +45,7 @@ Hubspot::Contact.create_or_update!([{email: 'smith@example.com', firstname: 'Fir
 
 ### Find a contact
 
-These methods will return a `Hubspot::Contact` object if successful, `nil` otherwise:
+These methods will return a `Hubspot::Contact` object if successful, a `Hubspot::RequestError` otherwise:
 
 ```ruby
 Hubspot::Contact.find_by_email("email@address.com")
