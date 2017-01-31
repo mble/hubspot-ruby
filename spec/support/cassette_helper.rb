@@ -8,6 +8,6 @@ module CassetteHelper
   end
 
   def cassette(cassette_name)
-    let(:_cassette){ cassette_name }
+    let(:_cassette) { cassette_name }
   end
 end

@@ -3,8 +3,8 @@ module Hubspot
   # HubSpot Contact lists API
   #
   class ContactList
-    LISTS_PATH           = '/contacts/v1/lists'
-    LIST_PATH            = '/contacts/v1/lists/:list_id'
+    LISTS_PATH           = '/contacts/v1/lists'.freeze
+    LIST_PATH            = '/contacts/v1/lists/:list_id'.freeze
     LIST_BATCH_PATH      = LISTS_PATH + '/batch'
     CONTACTS_PATH        = LIST_PATH + '/contacts/all'
     RECENT_CONTACTS_PATH = LIST_PATH + '/contacts/recent'
@@ -14,18 +14,18 @@ module Hubspot
 
     class << self
       # {http://developers.hubspot.com/docs/methods/lists/create_list}
-      def create!(opts={})
+      def create!(opts = {})
         dynamic = opts.delete(:dynamic) { false }
         portal_id = opts.delete(:portal_id) { Hubspot::Config.portal_id }
 
-        response = Hubspot::Connection.post_json(LISTS_PATH, params: {}, body: opts.merge({ dynamic: dynamic, portal_id: portal_id}) )
+        response = Hubspot::Connection.post_json(LISTS_PATH, params: {}, body: opts.merge(dynamic: dynamic, portal_id: portal_id))
         new(response)
       end
 
       # {http://developers.hubspot.com/docs/methods/lists/get_lists}
       # {http://developers.hubspot.com/docs/methods/lists/get_static_lists}
       # {http://developers.hubspot.com/docs/methods/lists/get_dynamic_lists}
-      def all(opts={})
+      def all(opts = {})
         static = opts.delete(:static) { false }
         dynamic = opts.delete(:dynamic) { false }
 
@@ -39,10 +39,10 @@ module Hubspot
       # {http://developers.hubspot.com/docs/methods/lists/get_batch_lists}
       def find(ids)
         batch_mode, path, params = case ids
-        when Integer then [false, LIST_PATH, { list_id: ids }]
-        when String then [false, LIST_PATH, { list_id: ids.to_i }]
-        when Array then [true, LIST_BATCH_PATH, { batch_list_id: ids.map(&:to_i) }]
-        else raise Hubspot::InvalidParams, 'expecting Integer or Array of Integers parameter'
+                                   when Integer then [false, LIST_PATH, { list_id: ids }]
+                                   when String then [false, LIST_PATH, { list_id: ids.to_i }]
+                                   when Array then [true, LIST_BATCH_PATH, { batch_list_id: ids.map(&:to_i) }]
+                                   else raise Hubspot::InvalidParams, 'expecting Integer or Array of Integers parameter'
         end
 
         response = Hubspot::Connection.get_json(path, params)
@@ -57,24 +57,24 @@ module Hubspot
     attr_reader :properties
 
     def initialize(hash)
-      self.send(:assign_properties, hash)
+      send(:assign_properties, hash)
     end
 
     # {http://developers.hubspot.com/docs/methods/lists/update_list}
-    def update!(opts={})
+    def update!(opts = {})
       response = Hubspot::Connection.post_json(LIST_PATH, params: { list_id: @id }, body: opts)
-      self.send(:assign_properties, response)
+      send(:assign_properties, response)
       self
     end
 
     # {http://developers.hubspot.com/docs/methods/lists/delete_list}
     def destroy!
-      response = Hubspot::Connection.delete_json(LIST_PATH, { list_id: @id })
+      response = Hubspot::Connection.delete_json(LIST_PATH, list_id: @id)
       @destroyed = (response.code == 204)
     end
 
     # {http://developers.hubspot.com/docs/methods/lists/get_list_contacts}
-    def contacts(opts={})
+    def contacts(opts = {})
       # NOTE: caching functionality can be dependant of the nature of the list, if dynamic or not ...
       bypass_cache = opts.delete(:bypass_cache) { false }
       recent = opts.delete(:recent) { false }

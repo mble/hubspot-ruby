@@ -4,29 +4,28 @@ module Hubspot
       # Parses the hubspot properties format into a key-value hash
       def properties_to_hash(props)
         newprops = HashWithIndifferentAccess.new
-        props.each { |k, v| newprops[k] = v["value"] }
+        props.each { |k, v| newprops[k] = v['value'] }
         newprops
       end
 
       # Turns a hash into the hubspot properties format
       def hash_to_properties(hash, opts = {})
-        key_name = opts[:key_name] || "property"
-        hash.map { |k, v| { key_name => k.to_s, "value" => v } }
+        key_name = opts[:key_name] || 'property'
+        hash.map { |k, v| { key_name => k.to_s, 'value' => v } }
       end
 
-      def dump_properties(klass, hapikey=ENV['HUBSPOT_API_KEY'], filter={})
+      def dump_properties(klass, hapikey = ENV['HUBSPOT_API_KEY'], filter = {})
         with_hapikey(hapikey) do
           { 'groups'     => klass.groups({}, filter),
-            'properties' => klass.all({}, filter).select { |p| !p['hubspotDefined'] }
-          }
+            'properties' => klass.all({}, filter).select { |p| !p['hubspotDefined'] } }
         end
       end
 
-      def restore_properties(klass, hapikey=ENV['HUPSPOT_API_KEY'], properties={}, dry_run=false)
+      def restore_properties(klass, hapikey = ENV['HUPSPOT_API_KEY'], properties = {}, dry_run = false)
         existing_properties                       = dump_properties(klass, hapikey)
         skip, new_groups, new_props, update_props = compare_property_lists(klass, properties, existing_properties)
         puts '', 'Dry Run - Changes will not be applied' if dry_run
-        puts '','Skipping'
+        puts '', 'Skipping'
         skip.each { |h| puts "#{h[:reason]} - #{h[:prop]['groupName']}:#{h[:prop]['name']}" }
         with_hapikey(hapikey) do
           create_groups(klass, new_groups, dry_run)
@@ -35,8 +34,8 @@ module Hubspot
         end
       end
 
-      def create_groups(klass, groups, dry_run=false)
-        puts '','Creating new groups'
+      def create_groups(klass, groups, dry_run = false)
+        puts '', 'Creating new groups'
         groups.each do |g|
           if dry_run || klass.create_group!(g)
             puts "Created: #{g['name']}"
@@ -46,8 +45,8 @@ module Hubspot
         end
       end
 
-      def create_properties(klass, props, dry_run=false)
-        puts '','Creating new properties'
+      def create_properties(klass, props, dry_run = false)
+        puts '', 'Creating new properties'
         props.each do |p|
           if dry_run || klass.create!(p)
             puts "Created: #{p['groupName']}:#{p['name']}"
@@ -57,8 +56,8 @@ module Hubspot
         end
       end
 
-      def update_properties(klass, props, dry_run=false)
-        puts '','Updating existing properties'
+      def update_properties(klass, props, dry_run = false)
+        puts '', 'Updating existing properties'
         props.each do |p|
           if dry_run || klass.update!(p['name'], p)
             puts "Updated: #{p['groupName']}:#{p['name']}"
@@ -80,7 +79,7 @@ module Hubspot
 
         src_props.each do |src|
           group = find_by_name(src['groupName'], src_groups)
-          if src['createdUserId'].blank? && src['updatedUserId'].blank? then
+          if src['createdUserId'].blank? && src['updatedUserId'].blank?
             skip << { prop: src, reason: 'Not user created' }
           else
             dst = find_by_name(src['name'], dst_props)
@@ -103,12 +102,10 @@ module Hubspot
       end
 
       def with_hapikey(hapikey)
-        begin
-          Hubspot.configure(hapikey: hapikey) unless hapikey.blank?
-          yield if block_given?
-        ensure
-          Hubspot.configure(hapikey: ENV['HUBSPOT_API_KEY']) unless hapikey.blank?
-        end
+        Hubspot.configure(hapikey: hapikey) unless hapikey.blank?
+        yield if block_given?
+      ensure
+        Hubspot.configure(hapikey: ENV['HUBSPOT_API_KEY']) unless hapikey.blank?
       end
 
       private
