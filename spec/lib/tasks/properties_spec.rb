@@ -38,7 +38,6 @@ describe 'properties rake tasks', live: true do
         expect(results.include?('Updated: ')).to be_false
       end
     end
-
   end
 
   context 'Deal Properties' do
@@ -77,11 +76,11 @@ describe 'properties rake tasks', live: true do
         expect(results.include?('Updated: ')).to be_false
       end
     end
-
   end
 
   def capture_stdout
-    previous, $stdout = $stdout, StringIO.new
+    previous = $stdout
+    $stdout = StringIO.new
     yield
     $stdout.string
   ensure

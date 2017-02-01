@@ -20,7 +20,7 @@ require 'hubspot/owner'
 require 'hubspot/engagement'
 
 module Hubspot
-  def self.configure(config={})
+  def self.configure(config = {})
     Hubspot::Config.configure(config)
   end
 
