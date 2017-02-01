@@ -1,0 +1,82 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hubapi.com/deals/v1/pipelines/default?hapikey=demo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      - user-agent
+      Date:
+      - Wed, 01 Feb 2017 14:05:15 GMT
+      Content-Length:
+      - '990'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"pipelineId":"default","stages":[{"stageId":"appointmentscheduled","label":"Tilbud
+        sendt - ikke ?bnet","probability":0.1,"active":true,"displayOrder":0,"closedWon":false},{"stageId":"qualifiedtobuy","label":"Tilbud
+        sendt - ?bnet","probability":0.2,"active":true,"displayOrder":1,"closedWon":false},{"stageId":"presentationscheduled","label":"Tilbud
+        sendt - ?bnet 2 gange","probability":0.4,"active":true,"displayOrder":2,"closedWon":false},{"stageId":"contractsent","label":"Kunde
+        kontaktet igen","probability":0.4,"active":true,"displayOrder":3,"closedWon":false},{"stageId":"closedwon","label":"Salg
+        lukket","probability":1.0,"active":true,"displayOrder":4,"closedWon":true},{"stageId":"closedlost","label":"Salg
+        tabt","probability":0.0,"active":true,"displayOrder":5,"closedWon":false},{"stageId":"9d328bc8-c212-4011-973f-534f9c496b46","label":"About
+        to Close","probability":0.9,"active":true,"displayOrder":6,"closedWon":false}],"label":"Sales
+        pipeline","active":true,"displayOrder":0}'
+    http_version:
+  recorded_at: Wed, 01 Feb 2017 14:05:15 GMT
+- request:
+    method: get
+    uri: https://api.hubapi.com/deals/v1/pipelines/empty?hapikey=demo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Hubspot-Notfound:
+      - 'true'
+      Content-Length:
+      - '156'
+      Date:
+      - Wed, 01 Feb 2017 14:06:28 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":"error","message":"Pipeline does not exist","correlationId":"2ba96290-3380-41cb-afad-f453753a3f3f","requestId":"d4b0ab79d57b193bcb81ac29515dc30d"}'
+    http_version:
+  recorded_at: Wed, 01 Feb 2017 14:06:28 GMT
+recorded_with: VCR 2.4.0
