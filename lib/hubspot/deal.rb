@@ -13,6 +13,7 @@ module Hubspot
     UPDATE_DEAL_PATH = '/deals/v1/deal/:deal_id'
     ASSOCIATE_DEAL_PATH = '/deals/v1/deal/:deal_id/associations/:OBJECTTYPE?id=:objectId'
     PAGED_DEALS_PATH = '/deals/v1/deal/paged?includeAssociations=true&properties=dealname&properties=dealstage&properties=amount'
+    ASSOCIATED_DEAL_PATH = '/deals/v1/deal/associated/:objectType/:objectId/paged?includeAssociations=true&properties=dealname&properties=dealstage&properties=amount'
 
     attr_reader :properties
     attr_reader :portal_id
@@ -67,6 +68,16 @@ module Hubspot
       # {http://developers.hubspot.com/docs/methods/deals/get-all-deals}
       def all(opts = {})
         response = Hubspot::Connection.get_json(PAGED_DEALS_PATH, opts)
+        response['deals'].map { |d| new(d) }
+      end
+
+      # Find all deals associated to a company
+      # http://developers.hubspot.com/docs/methods/deals/get-associated-deals
+      # @param opts [Hash] hash of parameters, must include objectType and objectId
+      # @return [Array<Hubspot::Deal>] array of Hubspot::Deal objects
+      def find_associated(opts = {})
+        raise(Hubspot::InvalidParams, 'objectType and objectId are mandatory params') unless (opts.keys & %i(objectType objectId)).present?
+        response = Hubspot::Connection.get_json(ASSOCIATED_DEAL_PATH, opts)
         response['deals'].map { |d| new(d) }
       end
     end

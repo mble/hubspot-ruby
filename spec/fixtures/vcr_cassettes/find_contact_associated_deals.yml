@@ -1,0 +1,30 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hubapi.com/deals/v1/deal/associated/contact/3020024/paged?hapikey=demo&includeAssociations=true&properties=amount
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '3307'
+      Date:
+      - Wed, 01 Feb 2017 10:58:31 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"deals":[{"portalId":62515,"dealId":66795996,"isDeleted":false,"associations":{"associatedVids":[3020024],"associatedCompanyIds":[],"associatedDealIds":[]},"properties":{"dealname":{"value":"vtestTOJustDelete-national","timestamp":1485768831635,"source":"API","sourceId":null,"versions":[{"name":"dealname","value":"vtestTOJustDelete-national","timestamp":1485768831635,"source":"API","sourceVid":[]}]},"num_associated_contacts":{"value":"1","timestamp":0,"source":"CALCULATED","sourceId":null,"versions":[{"name":"num_associated_contacts","value":"1","source":"CALCULATED","sourceVid":[]}]},"dealstage":{"value":"appointmentscheduled","timestamp":1485768831635,"source":"API","sourceId":null,"versions":[{"name":"dealstage","value":"appointmentscheduled","timestamp":1485768831635,"source":"API","sourceVid":[]}]}},"imports":[]},{"portalId":62515,"dealId":86613613,"isDeleted":false,"associations":{"associatedVids":[3020024],"associatedCompanyIds":[],"associatedDealIds":[]},"properties":{"dealname":{"value":"vtestTodfajslf-national","timestamp":1485770626276,"source":"API","sourceId":null,"versions":[{"name":"dealname","value":"vtestTodfajslf-national","timestamp":1485770626276,"source":"API","sourceVid":[]}]},"num_associated_contacts":{"value":"1","timestamp":0,"source":"CALCULATED","sourceId":null,"versions":[{"name":"num_associated_contacts","value":"1","source":"CALCULATED","sourceVid":[]}]},"dealstage":{"value":"appointmentscheduled","timestamp":1485770626276,"source":"API","sourceId":null,"versions":[{"name":"dealstage","value":"appointmentscheduled","timestamp":1485770626276,"source":"API","sourceVid":[]}]}},"imports":[]},{"portalId":62515,"dealId":71296757,"isDeleted":false,"associations":{"associatedVids":[3020024],"associatedCompanyIds":[],"associatedDealIds":[]},"properties":{"dealname":{"value":"vtestLastToDelete-national","timestamp":1485768574959,"source":"API","sourceId":null,"versions":[{"name":"dealname","value":"vtestLastToDelete-national","timestamp":1485768574959,"source":"API","sourceVid":[]}]},"num_associated_contacts":{"value":"1","timestamp":0,"source":"CALCULATED","sourceId":null,"versions":[{"name":"num_associated_contacts","value":"1","source":"CALCULATED","sourceVid":[]}]},"dealstage":{"value":"appointmentscheduled","timestamp":1485768574959,"source":"API","sourceId":null,"versions":[{"name":"dealstage","value":"appointmentscheduled","timestamp":1485768574959,"source":"API","sourceVid":[]}]}},"imports":[]},{"portalId":62515,"dealId":68174540,"isDeleted":false,"associations":{"associatedVids":[3020024],"associatedCompanyIds":[],"associatedDealIds":[]},"properties":{"dealname":{"value":"vtestLast-national","timestamp":1485767985457,"source":"API","sourceId":null,"versions":[{"name":"dealname","value":"vtestLast-national","timestamp":1485767985457,"source":"API","sourceVid":[]}]},"num_associated_contacts":{"value":"1","timestamp":0,"source":"CALCULATED","sourceId":null,"versions":[{"name":"num_associated_contacts","value":"1","source":"CALCULATED","sourceVid":[]}]},"dealstage":{"value":"appointmentscheduled","timestamp":1485767985457,"source":"API","sourceId":null,"versions":[{"name":"dealstage","value":"appointmentscheduled","timestamp":1485767985457,"source":"API","sourceVid":[]}]}},"imports":[]}],"hasMore":false,"offset":86613613}'
+    http_version: 
+  recorded_at: Wed, 01 Feb 2017 10:58:31 GMT
+recorded_with: VCR 2.4.0

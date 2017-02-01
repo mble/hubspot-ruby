@@ -92,6 +92,52 @@ describe Hubspot::Deal do
     end
   end
 
+  describe 'find_associated' do
+    context 'company associated deals' do
+      it 'raises an error unless mandatory params are supplied' do
+        expect { Hubspot::Deal.find_associated }.to raise_error Hubspot::InvalidParams
+      end
+
+      it 'must get all deals associated to a company' do
+        VCR.use_cassette 'find_company_associated_deals' do
+          deals = Hubspot::Deal.find_associated({ objectType: 'company', objectId: '352000220' })
+
+          first = deals.first
+
+          expect(first).to be_a Hubspot::Deal
+          expect(first.properties['dealname']).to eql "Tim's Newer Deal"
+          expect(first.properties['dealstage']).to eql 'appointmentscheduled'
+          expect(first.properties['amount']).to eql '60000'
+        end
+      end
+    end
+
+    context 'contact associated deals' do
+      it 'raises an error unless mandatory params are supplied' do
+        expect { Hubspot::Deal.find_associated }.to raise_error Hubspot::InvalidParams
+      end
+
+      it 'must get all deals associated to a contact' do
+        VCR.use_cassette 'find_contact_associated_deals' do
+          deals = Hubspot::Deal.find_associated({ objectType: 'contact', objectId: '3020024' })
+
+          first = deals.first
+          last = deals.last
+
+          expect(first).to be_a Hubspot::Deal
+          expect(first.properties['dealname']).to eql 'vtestTOJustDelete-national'
+          expect(first.properties['dealstage']).to eql 'appointmentscheduled'
+          expect(first.properties['amount']).to be_nil
+
+          expect(last).to be_a Hubspot::Deal
+          expect(last.properties['dealname']).to eql 'vtestLast-national'
+          expect(last.properties['dealstage']).to eql 'appointmentscheduled'
+          expect(last.properties['amount']).to be_nil
+        end
+      end
+    end
+  end
+
   describe '#destroy!' do
     cassette 'destroy_deal'
 
