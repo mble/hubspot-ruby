@@ -1,26 +1,29 @@
-describe "Deals API Live test", live: true do
-
+describe 'Deals API Live test', live: true do
   before do
-    Hubspot.configure hapikey: "demo"
+    Hubspot.configure hapikey: 'demo'
   end
 
   it 'should create, find, update and destroy' do
-    contact = Hubspot::Contact.find_by_email("create_delete_test@hsgemtest.com") rescue nil
-    contact ||= Hubspot::Contact.create!("create_delete_test@hsgemtest.com")
+    contact = begin
+                Hubspot::Contact.find_by_email('create_delete_test@hsgemtest.com')
+              rescue
+                nil
+              end
+    contact ||= Hubspot::Contact.create!('create_delete_test@hsgemtest.com')
 
     expect(contact).to be_present
 
-    deal = Hubspot::Deal.create!(62515, [], [contact.vid], { amount: 30, dealstage: 'closedwon' })
+    deal = Hubspot::Deal.create!(62_515, [], [contact.vid], amount: 30, dealstage: 'closedwon')
     expect(deal).to be_present
 
     expect(deal['dealstage']).to eql 'closedwon'
 
-    deal.update!({dealstage: 'closedlost'})
+    deal.update!(dealstage: 'closedlost')
 
     expect(deal['dealstage']).to eql 'closedlost'
     expect(deal['amount']).to eql '30'
 
-    #to be sure it was updated
+    # to be sure it was updated
     updated_deal = Hubspot::Deal.find(deal.deal_id)
 
     expect(updated_deal['dealstage']).to eql 'closedlost'

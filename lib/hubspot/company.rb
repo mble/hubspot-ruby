@@ -5,15 +5,15 @@ module Hubspot
   # {http://developers.hubspot.com/docs/methods/companies/companies-overview}
   #
   class Company
-    CREATE_COMPANY_PATH               = "/companies/v2/companies/"
-    RECENTLY_CREATED_COMPANIES_PATH   = "/companies/v2/companies/recent/created"
-    RECENTLY_MODIFIED_COMPANIES_PATH  = "/companies/v2/companies/recent/modified"
-    GET_COMPANY_BY_ID_PATH            = "/companies/v2/companies/:company_id"
-    GET_COMPANY_BY_DOMAIN_PATH        = "/companies/v2/companies/domain/:domain"
-    UPDATE_COMPANY_PATH               = "/companies/v2/companies/:company_id"
-    ADD_CONTACT_TO_COMPANY_PATH       = "/companies/v2/companies/:company_id/contacts/:vid"
-    DESTROY_COMPANY_PATH              = "/companies/v2/companies/:company_id"
-    GET_COMPANY_CONTACTS_PATH         = "/companies/v2/companies/:company_id/contacts"
+    CREATE_COMPANY_PATH               = '/companies/v2/companies/'
+    RECENTLY_CREATED_COMPANIES_PATH   = '/companies/v2/companies/recent/created'
+    RECENTLY_MODIFIED_COMPANIES_PATH  = '/companies/v2/companies/recent/modified'
+    GET_COMPANY_BY_ID_PATH            = '/companies/v2/companies/:company_id'
+    GET_COMPANY_BY_DOMAIN_PATH        = '/companies/v2/companies/domain/:domain'
+    UPDATE_COMPANY_PATH               = '/companies/v2/companies/:company_id'
+    ADD_CONTACT_TO_COMPANY_PATH       = '/companies/v2/companies/:company_id/contacts/:vid'
+    DESTROY_COMPANY_PATH              = '/companies/v2/companies/:company_id'
+    GET_COMPANY_CONTACTS_PATH         = '/companies/v2/companies/:company_id/contacts'
 
     class << self
       # Find all companies by created date (descending)
@@ -24,14 +24,14 @@ module Hubspot
       # {http://developers.hubspot.com/docs/methods/companies/get_companies_created}
       # {http://developers.hubspot.com/docs/methods/companies/get_companies_modified}
       # @return [Array] Array of Hubspot::Company records
-      def all(opts={})
+      def all(opts = {})
         recently_updated = opts.delete(:recently_updated) { false }
         # limit = opts.delete(:limit) { 20 }
         # skip = opts.delete(:skip) { 0 }
         path = if recently_updated
-          RECENTLY_MODIFIED_COMPANIES_PATH
-        else
-          RECENTLY_CREATED_COMPANIES_PATH
+                 RECENTLY_MODIFIED_COMPANIES_PATH
+               else
+                 RECENTLY_CREATED_COMPANIES_PATH
         end
 
         response = Hubspot::Connection.get_json(path, opts)
@@ -73,10 +73,10 @@ module Hubspot
       # {http://developers.hubspot.com/docs/methods/companies/create_company}
       # @param name [String]
       # @return [Hubspot::Company] Company record
-      def create!(name, params={})
-        params_with_name = params.stringify_keys.merge("name" => name)
-        post_data = {properties: Hubspot::Utils.hash_to_properties(params_with_name, key_name: "name")}
-        response = Hubspot::Connection.post_json(CREATE_COMPANY_PATH, params: {}, body: post_data )
+      def create!(name, params = {})
+        params_with_name = params.stringify_keys.merge('name' => name)
+        post_data = { properties: Hubspot::Utils.hash_to_properties(params_with_name, key_name: 'name') }
+        response = Hubspot::Connection.post_json(CREATE_COMPANY_PATH, params: {}, body: post_data)
         new(response)
       end
     end
@@ -85,9 +85,9 @@ module Hubspot
     attr_reader :vid, :name
 
     def initialize(response_hash)
-      @properties = Hubspot::Utils.properties_to_hash(response_hash["properties"])
-      @vid = response_hash["companyId"]
-      @name = @properties.try(:[], "name")
+      @properties = Hubspot::Utils.properties_to_hash(response_hash['properties'])
+      @vid = response_hash['companyId']
+      @name = @properties.try(:[], 'name')
     end
 
     def [](property)
@@ -99,7 +99,7 @@ module Hubspot
     # @param params [Hash] hash of properties to update
     # @return [Hubspot::Company] self
     def update!(params)
-      query = {"properties" => Hubspot::Utils.hash_to_properties(params.stringify_keys!, key_name: "name")}
+      query = { 'properties' => Hubspot::Utils.hash_to_properties(params.stringify_keys!, key_name: 'name') }
       Hubspot::Connection.put_json(UPDATE_COMPANY_PATH, params: { company_id: vid }, body: query)
       @properties.merge!(params)
       self
@@ -118,7 +118,7 @@ module Hubspot
       Hubspot::Connection.put_json(ADD_CONTACT_TO_COMPANY_PATH,
                                    params: {
                                      company_id: vid,
-                                     vid: contact_vid,
+                                     vid: contact_vid
                                    },
                                    body: nil)
       self
@@ -128,7 +128,7 @@ module Hubspot
     # {http://developers.hubspot.com/docs/methods/companies/delete_company}
     # @return [TrueClass] true
     def destroy!
-      Hubspot::Connection.delete_json(DESTROY_COMPANY_PATH, { company_id: vid })
+      Hubspot::Connection.delete_json(DESTROY_COMPANY_PATH, company_id: vid)
       @destroyed = true
     end
 

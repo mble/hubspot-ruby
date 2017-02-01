@@ -3,8 +3,8 @@ module Hubspot
   # HubSpot Topics API
   #
   class Topic
-    TOPICS_PATH = "/blogs/v3/topics"
-    TOPIC_PATH = "/blogs/v3/topics/:topic_id"
+    TOPICS_PATH = '/blogs/v3/topics'
+    TOPIC_PATH = '/blogs/v3/topics/:topic_id'
 
     class << self
       # Lists the topics
@@ -19,7 +19,7 @@ module Hubspot
       # {https://developers.hubspot.com/docs/methods/blogv2/get_topics_topic_id }
       # @return Hubspot::Topic
       def find_by_topic_id(id)
-        response = Hubspot::Connection.get_json(TOPIC_PATH, { topic_id: id })
+        response = Hubspot::Connection.get_json(TOPIC_PATH, topic_id: id)
         new(response)
       end
     end
@@ -27,7 +27,7 @@ module Hubspot
     attr_reader :properties
 
     def initialize(response_hash)
-      @properties = response_hash #no need to parse anything, we have properties
+      @properties = response_hash # no need to parse anything, we have properties
     end
 
     def [](property)

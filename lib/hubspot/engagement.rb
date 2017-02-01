@@ -17,29 +17,26 @@ module Hubspot
     attr_reader :metadata
 
     def initialize(response_hash)
-
-      @engagement = response_hash["engagement"]
-      @associations = response_hash["associations"]
-      @metadata = response_hash["metadata"]
-      @id = engagement["id"]
+      @engagement = response_hash['engagement']
+      @associations = response_hash['associations']
+      @metadata = response_hash['metadata']
+      @id = engagement['id']
     end
 
     class << self
-      def create!(params={})
-        response = Hubspot::Connection.post_json(CREATE_ENGAGMEMENT_PATH, params: {}, body: params )
+      def create!(params = {})
+        response = Hubspot::Connection.post_json(CREATE_ENGAGMEMENT_PATH, params: {}, body: params)
         new(HashWithIndifferentAccess.new(response))
       end
 
       def find(engagement_id)
-        begin
-          response = Hubspot::Connection.get_json(ENGAGEMENT_PATH, { engagement_id: engagement_id })
-          response ? new(HashWithIndifferentAccess.new(response)) : nil
-        rescue Hubspot::RequestError => ex
-          if ex.response.code == 404
-            return nil
-          else
-            raise ex
-          end
+        response = Hubspot::Connection.get_json(ENGAGEMENT_PATH, engagement_id: engagement_id)
+        response ? new(HashWithIndifferentAccess.new(response)) : nil
+      rescue Hubspot::RequestError => ex
+        if ex.response.code == 404
+          return nil
+        else
+          raise ex
         end
       end
 
@@ -60,7 +57,7 @@ module Hubspot
         engagements = []
         begin
           response = Hubspot::Connection.get_json(path, params)
-          engagements = response["results"].try(:map) { |engagement| new(engagement) }
+          engagements = response['results'].try(:map) { |engagement| new(engagement) }
         rescue => e
           raise e unless e.message =~ /not found/
         end
@@ -72,7 +69,7 @@ module Hubspot
     # {http://developers.hubspot.com/docs/methods/engagements/delete-engagement}
     # @return [TrueClass] true
     def destroy!
-      Hubspot::Connection.delete_json(ENGAGEMENT_PATH, {engagement_id: id})
+      Hubspot::Connection.delete_json(ENGAGEMENT_PATH, engagement_id: id)
       @destroyed = true
     end
 
@@ -88,7 +85,7 @@ module Hubspot
     # {http://developers.hubspot.com/docs/methods/engagements/update_engagement}
     # @param params [Hash] hash of properties to update
     # @return [Hubspot::Engagement] self
-    def update!(params)
+    def update!(_params)
       data = {
         engagement: engagement,
         associations: associations,
@@ -166,7 +163,7 @@ module Hubspot
           }
         }
 
-        data[:engagement][:timestamp] = (time.to_i) * 1000 if time
+        data[:engagement][:timestamp] = time.to_i * 1000 if time
         data[:engagement][:owner_id] = owner_id if owner_id
 
         super(data)

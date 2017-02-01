@@ -1,6 +1,5 @@
 module Hubspot
   class Properties
-
     PROPERTY_SPECS = {
       group_field_names: %w(name displayName displayOrder properties),
       field_names:       %w(name groupName description fieldType formField type displayOrder label options),
@@ -14,7 +13,7 @@ module Hubspot
     class << self
       # TODO: properties can be set as configuration
       # TODO: find the way how to set a list of Properties + merge same property key if present from opts
-      def add_default_parameters(opts={})
+      def add_default_parameters(opts = {})
         if opts.keys.map(&:to_s).include? 'property'
           opts
         else
@@ -22,23 +21,23 @@ module Hubspot
         end
       end
 
-      def all(path, opts={}, filter={})
+      def all(path, opts = {}, filter = {})
         response = Hubspot::Connection.get_json(path, opts)
         filter_results(response, :groupName, filter[:include], filter[:exclude])
       end
 
-      def groups(path, opts={}, filter={})
+      def groups(path, opts = {}, filter = {})
         response = Hubspot::Connection.get_json(path, opts)
         filter_results(response, :name, filter[:include], filter[:exclude])
       end
 
-      def create!(path, params={})
+      def create!(path, params = {})
         post_data = valid_property_params(params)
         return nil if post_data.blank?
         Hubspot::Connection.post_json(path, params: {}, body: post_data)
       end
 
-      def update!(path, property_name, params={})
+      def update!(path, property_name, params = {})
         post_data = valid_property_params(params)
         return nil if post_data.blank?
         Hubspot::Connection.put_json(path, params: { property_name: property_name }, body: post_data)
@@ -49,13 +48,13 @@ module Hubspot
         response.parsed_response
       end
 
-      def create_group!(path, params={})
+      def create_group!(path, params = {})
         post_data = valid_group_params(params)
         return nil if post_data.blank?
         Hubspot::Connection.post_json(path, params: {}, body: post_data)
       end
 
-      def update_group!(path, group_name, params={})
+      def update_group!(path, group_name, params = {})
         post_data = valid_group_params(params)
         return nil if post_data.blank?
         Hubspot::Connection.put_json(path, params: { group_name: group_name }, body: post_data)
@@ -73,7 +72,7 @@ module Hubspot
         # hash_same?(src_params, dst_params)
       end
 
-      def valid_params(params={})
+      def valid_params(params = {})
         valid_property_params(params)
       end
 
@@ -81,10 +80,10 @@ module Hubspot
 
       def filter_results(results, key, include, exclude)
         key = key.to_s
-        results.select { |result|
+        results.select do |result|
           (include.blank? || include.include?(result[key])) &&
             (exclude.blank? || !exclude.include?(result[key]))
-        }
+        end
       end
 
       def valid_property_params(params)

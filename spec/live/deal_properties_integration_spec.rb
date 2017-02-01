@@ -16,7 +16,7 @@ describe 'Deal Properties API Live test', live: true do
     pending 'Broken by Hubspot'
     group_names = %w(dealinformation)
 
-    result = Hubspot::DealProperties.all({}, { include: group_names })
+    result = Hubspot::DealProperties.all({}, include: group_names)
     expect(result.count).to be > 0
     result.each do |entry|
       expect(group_names.include?(entry['groupName']))
@@ -27,7 +27,7 @@ describe 'Deal Properties API Live test', live: true do
     pending 'Broken by Hubspot'
     group_names = %w(dealinformation)
 
-    result = Hubspot::DealProperties.all({}, { exclude: group_names })
+    result = Hubspot::DealProperties.all({}, exclude: group_names)
     expect(result.count).to be > 0
     result.each do |entry|
       expect(group_names.include?(entry['groupName'])).to be_false
@@ -42,7 +42,7 @@ describe 'Deal Properties API Live test', live: true do
   end
 
   it 'should return  list of groups and their properties' do
-    result = Hubspot::DealProperties.groups({ includeProperties: true })
+    result = Hubspot::DealProperties.groups(includeProperties: true)
 
     expect(result.count).to be > 0
     expect(result[0].keys).to eql(%w(name displayName displayOrder hubspotDefined properties))
@@ -50,7 +50,7 @@ describe 'Deal Properties API Live test', live: true do
 
   it 'should return only the requested groups' do
     group_names = %w(dealinformation)
-    result      = Hubspot::DealProperties.groups({}, { include: group_names })
+    result      = Hubspot::DealProperties.groups({}, include: group_names)
 
     expect(result.count).to eq(group_names.count)
     result.each do |entry|
@@ -60,7 +60,7 @@ describe 'Deal Properties API Live test', live: true do
 
   it 'should filter out the excluded groups' do
     group_names = %w(dealinformation)
-    result      = Hubspot::DealProperties.groups({}, { exclude: group_names })
+    result      = Hubspot::DealProperties.groups({}, exclude: group_names)
 
     result.each do |entry|
       expect(group_names.include?(entry['name'])).to be_false
@@ -68,7 +68,7 @@ describe 'Deal Properties API Live test', live: true do
   end
 
   describe 'should create, update, and delete properties' do
-    let(:data) {
+    let(:data) do
       { 'name'        => 'testfield909',
         'label'       => 'A test property',
         'description' => 'This is a test property',
@@ -76,7 +76,7 @@ describe 'Deal Properties API Live test', live: true do
         'type'        => 'string',
         'fieldType'   => 'text',
         'formField'   => false }
-    }
+    end
 
     it 'should create a new property' do
       response = Hubspot::DealProperties.create!(data)
@@ -97,11 +97,10 @@ describe 'Deal Properties API Live test', live: true do
   end
 
   describe 'should create, update, and delete property groups' do
-    let(:data) {
+    let(:data) do
       { 'name'         => 'testgroup99',
-        'displayName'  => 'Test Group 99'
-      }
-    }
+        'displayName'  => 'Test Group 99' }
+    end
 
     it 'should create a new property group' do
       response = Hubspot::DealProperties.create_group!(data)

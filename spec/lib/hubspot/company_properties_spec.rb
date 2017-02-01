@@ -44,7 +44,7 @@ describe Hubspot::CompanyProperties do
         cassette 'properties_in_groups'
 
         it 'should return properties for the specified group[s]' do
-          response = Hubspot::CompanyProperties.all({}, { include: groups })
+          response = Hubspot::CompanyProperties.all({}, include: groups)
           response.each { |p| expect(groups.include?(p['groupName'])).to be_true }
         end
       end
@@ -53,31 +53,33 @@ describe Hubspot::CompanyProperties do
         cassette 'properties_not_in_groups'
 
         it 'should return properties for the non-specified group[s]' do
-          response = Hubspot::CompanyProperties.all({}, { exclude: groups })
+          response = Hubspot::CompanyProperties.all({}, exclude: groups)
           response.each { |p| expect(groups.include?(p['groupName'])).to be_false }
         end
       end
     end
 
-    let(:params) { {
-      'name'                          => 'my_new_property',
-      'label'                         => 'This is my new property',
-      'description'                   => 'What kind of x would you like?',
-      'groupName'                     => 'companyinformation',
-      'type'                          => 'string',
-      'fieldType'                     => 'text',
-      'hidden'                        => false,
-      'options'                       => [],
-      'deleted'                       => false,
-      'displayOrder'                  => 0,
-      'formField'                     => true,
-      'readOnlyValue'                 => false,
-      'readOnlyDefinition'            => false,
-      'mutableDefinitionNotDeletable' => false,
-      'calculated'                    => false,
-      'externalOptions'               => false,
-      'displayMode'                   => 'current_value'
-    } }
+    let(:params) do
+      {
+        'name' => 'my_new_property',
+        'label'                         => 'This is my new property',
+        'description'                   => 'What kind of x would you like?',
+        'groupName'                     => 'companyinformation',
+        'type'                          => 'string',
+        'fieldType'                     => 'text',
+        'hidden'                        => false,
+        'options'                       => [],
+        'deleted'                       => false,
+        'displayOrder'                  => 0,
+        'formField'                     => true,
+        'readOnlyValue'                 => false,
+        'readOnlyDefinition'            => false,
+        'mutableDefinitionNotDeletable' => false,
+        'calculated'                    => false,
+        'externalOptions'               => false,
+        'displayMode'                   => 'current_value'
+      }
+    end
     let(:valid_params) { params.select { |k, _| Hubspot::CompanyProperties::PROPERTY_SPECS[:field_names].include?(k) } }
 
     describe '.create!' do
@@ -101,7 +103,6 @@ describe Hubspot::CompanyProperties do
 
     describe '.update!' do
       context 'with no valid parameters' do
-
         it 'should return nil ' do
           expect(Hubspot::CompanyProperties.update!(params['name'], {})).to be(nil)
         end
@@ -157,7 +158,7 @@ describe Hubspot::CompanyProperties do
         cassette 'groups_included'
 
         it 'should return the specified groups' do
-          response = Hubspot::CompanyProperties.groups({}, { include: groups })
+          response = Hubspot::CompanyProperties.groups({}, include: groups)
           response.each { |p| expect(groups.include?(p['name'])).to be_true }
         end
       end
@@ -166,7 +167,7 @@ describe Hubspot::CompanyProperties do
         cassette 'groups_not_excluded'
 
         it 'should return groups that were not excluded' do
-          response = Hubspot::CompanyProperties.groups({}, { exclude: groups })
+          response = Hubspot::CompanyProperties.groups({}, exclude: groups)
           response.each { |p| expect(groups.include?(p['name'])).to be_false }
         end
       end
@@ -205,7 +206,6 @@ describe Hubspot::CompanyProperties do
 
     describe '.update_group!' do
       context 'with no valid parameters' do
-
         it 'should return nil ' do
           expect(Hubspot::CompanyProperties.update_group!(params['name'], {})).to be(nil)
         end
@@ -221,7 +221,6 @@ describe Hubspot::CompanyProperties do
           expect(Hubspot::CompanyProperties.same?(response, params)).to be_true
         end
       end
-
     end
 
     describe '.delete_group!' do

@@ -9,7 +9,7 @@ namespace :hubspot do
       raise ArgumentError, ':kind must be either "contact" or "deal"'
     end
     klass = kind == 'contact' ? Hubspot::ContactProperties : Hubspot::DealProperties
-    props = Hubspot::Utils::dump_properties(klass, hapikey, build_filter(args))
+    props = Hubspot::Utils.dump_properties(klass, hapikey, build_filter(args))
     if args[:file].blank?
       puts JSON.pretty_generate(props)
     else
@@ -22,9 +22,7 @@ namespace :hubspot do
   desc 'Restore properties from file'
   task :restore_properties, [:kind, :file, :hapikey, :dry_run] do |_, args|
     hapikey = args[:hapikey] || ENV['HUBSPOT_API_KEY']
-    if args[:file].blank?
-      raise ArgumentError, ':file is a required parameter'
-    end
+    raise ArgumentError, ':file is a required parameter' if args[:file].blank?
     kind = args[:kind]
     unless %w(contact deal).include?(kind)
       raise ArgumentError, ':kind must be either "contact" or "deal"'
@@ -39,8 +37,7 @@ namespace :hubspot do
 
   def build_filter(args)
     { include: val_to_array(args[:include]),
-      exclude: val_to_array(args[:exclude])
-    }
+      exclude: val_to_array(args[:exclude]) }
   end
 
   def val_to_array(val)

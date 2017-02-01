@@ -1,7 +1,7 @@
 describe Hubspot::ContactList do
   let(:example_contact_list_hash) do
-    VCR.use_cassette("contact_list_example", record: :none) do
-      HTTParty.get("https://api.hubapi.com/contacts/v1/lists/1?hapikey=demo").parsed_response
+    VCR.use_cassette('contact_list_example', record: :none) do
+      HTTParty.get('https://api.hubapi.com/contacts/v1/lists/1?hapikey=demo').parsed_response
     end
   end
 
@@ -9,8 +9,8 @@ describe Hubspot::ContactList do
   let(:dynamic_list) { Hubspot::ContactList.all(dynamic: true, count: 1).first }
 
   let(:example_contact_hash) do
-    VCR.use_cassette("contact_example", record: :none) do
-      HTTParty.get("https://api.hubapi.com/contacts/v1/contact/email/testingapis@hubspot.com/profile?hapikey=demo").parsed_response
+    VCR.use_cassette('contact_example', record: :none) do
+      HTTParty.get('https://api.hubapi.com/contacts/v1/contact/email/testingapis@hubspot.com/profile?hapikey=demo').parsed_response
     end
   end
 
@@ -25,7 +25,7 @@ describe Hubspot::ContactList do
     its(:properties) { should be_a(Hash) }
   end
 
-  before { Hubspot.configure(hapikey: "demo") }
+  before { Hubspot.configure(hapikey: 'demo') }
 
   describe '#contacts' do
     cassette 'contacts_among_list'
@@ -49,7 +49,7 @@ describe Hubspot::ContactList do
   end
 
   describe '.create' do
-    subject{ Hubspot::ContactList.create!({ name: name }) }
+    subject { Hubspot::ContactList.create!(name: name) }
 
     context 'with all required parameters' do
       cassette 'create_list'
@@ -65,8 +65,8 @@ describe Hubspot::ContactList do
 
         it 'returns a ContactList object with filters set' do
           name = 'list with filters'
-          filters_param = [[{ operator: "EQ", value: "@hubspot", property: "twitterhandle", type: "string"}]]
-          list_with_filters = Hubspot::ContactList.create!({ name: name, filters: filters_param })
+          filters_param = [[{ operator: 'EQ', value: '@hubspot', property: 'twitterhandle', type: 'string' }]]
+          list_with_filters = Hubspot::ContactList.create!(name: name, filters: filters_param)
           expect(list_with_filters).to be_a(Hubspot::ContactList)
           expect(list_with_filters.properties['filters']).to_not be_empty
         end
@@ -77,7 +77,7 @@ describe Hubspot::ContactList do
       cassette 'fail_to_create_list'
 
       it 'raises an error' do
-        expect { Hubspot::ContactList.create!({ name: nil }) }.to raise_error(Hubspot::RequestError)
+        expect { Hubspot::ContactList.create!(name: nil) }.to raise_error(Hubspot::RequestError)
       end
     end
   end
@@ -93,7 +93,7 @@ describe Hubspot::ContactList do
         list = lists.first
         expect(list).to be_a(Hubspot::ContactList)
         expect(list.id).to be_an(Integer)
-  	  end
+      end
 
       expect_count_and_offset { |params| Hubspot::ContactList.all(params) }
     end
@@ -102,7 +102,7 @@ describe Hubspot::ContactList do
       cassette 'find_all_stastic_lists'
 
       it 'returns by defaut all the static contact lists' do
-      	lists = Hubspot::ContactList.all(static: true)
+        lists = Hubspot::ContactList.all(static: true)
         expect(lists.count).to be > 20
 
         list = lists.first
@@ -115,7 +115,7 @@ describe Hubspot::ContactList do
       cassette 'find_all_dynamic_lists'
 
       it 'returns by defaut all the static contact lists' do
-      	lists = Hubspot::ContactList.all(dynamic: true)
+        lists = Hubspot::ContactList.all(dynamic: true)
         expect(lists.count).to be > 20
 
         list = lists.first
@@ -127,7 +127,7 @@ describe Hubspot::ContactList do
 
   describe '.find' do
     context 'given an id' do
-      cassette "contact_list_find"
+      cassette 'contact_list_find'
       subject { Hubspot::ContactList.find(id) }
 
       context 'when the contact list is found' do
@@ -153,10 +153,10 @@ describe Hubspot::ContactList do
     end
 
     context 'given a list of ids' do
-      cassette "contact_list_batch_find"
+      cassette 'contact_list_batch_find'
 
       it 'find lists of contacts' do
-        lists = Hubspot::ContactList.find([2,3,4])
+        lists = Hubspot::ContactList.find([2, 3, 4])
         list = lists.first
         expect(list).to be_a(Hubspot::ContactList)
         expect(list.id).to be == 2
@@ -167,12 +167,12 @@ describe Hubspot::ContactList do
   end
 
   describe '#add' do
-    cassette "add_contacts_to_lists"
+    cassette 'add_contacts_to_lists'
 
     context 'static list' do
       it 'returns true if contacts have been added to the list' do
         contact = Hubspot::Contact.all(count: 1).first
-        mock(Hubspot::Connection).post_json("/contacts/v1/lists/:list_id/add", {:params=>{:list_id=>4}, :body=>{:vids=>[contact.vid]}}) { { 'updated' => [contact.vid] } }
+        mock(Hubspot::Connection).post_json('/contacts/v1/lists/:list_id/add', params: { list_id: 4 }, body: { vids: [contact.vid] }) { { 'updated' => [contact.vid] } }
 
         expect(static_list.add(contact)).to be true
       end
@@ -192,7 +192,7 @@ describe Hubspot::ContactList do
   end
 
   describe '#remove' do
-    cassette "remove_contacts_from_lists"
+    cassette 'remove_contacts_from_lists'
 
     context 'static list' do
       it 'returns true if removes all contacts in batch mode' do
@@ -215,31 +215,31 @@ describe Hubspot::ContactList do
   end
 
   describe '#update!' do
-    cassette "contact_list_update"
+    cassette 'contact_list_update'
 
     let(:contact_list) { Hubspot::ContactList.new(example_contact_list_hash) }
-    let(:params) { { name: "update list name" } }
+    let(:params) { { name: 'update list name' } }
     subject { contact_list.update!(params) }
 
     it { should be_an_instance_of Hubspot::ContactList }
-    its(:name){ should == "update list name" }
+    its(:name) { should == 'update list name' }
   end
 
   describe '#destroy!' do
-    cassette "contact_list_destroy"
+    cassette 'contact_list_destroy'
 
-    let(:contact_list) { Hubspot::ContactList.create!({ name: "newcontactlist_#{Time.now.to_i}"}) }
-    subject{ contact_list.destroy! }
+    let(:contact_list) { Hubspot::ContactList.create!(name: "newcontactlist_#{Time.now.to_i}") }
+    subject { contact_list.destroy! }
     it { should be_true }
 
-    it "should be destroyed" do
+    it 'should be destroyed' do
       subject
       contact_list.destroyed?.should be_true
     end
   end
 
   describe '#refresh' do
-    cassette "contact_list_refresh"
+    cassette 'contact_list_refresh'
 
     let(:contact_list) { Hubspot::ContactList.new(example_contact_list_hash) }
     subject { contact_list.refresh }

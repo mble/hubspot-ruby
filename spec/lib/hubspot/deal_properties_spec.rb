@@ -44,7 +44,7 @@ describe Hubspot::DealProperties do
         cassette 'deal_properties_in_groups'
 
         it 'should return properties for the specified group[s]' do
-          response = Hubspot::DealProperties.all({}, { include: groups })
+          response = Hubspot::DealProperties.all({}, include: groups)
           response.each { |p| expect(groups.include?(p['groupName'])).to be_true }
         end
       end
@@ -53,48 +53,50 @@ describe Hubspot::DealProperties do
         cassette 'deal_properties_not_in_groups'
 
         it 'should return properties for the non-specified group[s]' do
-          response = Hubspot::DealProperties.all({}, { exclude: groups })
+          response = Hubspot::DealProperties.all({}, exclude: groups)
           response.each { |p| expect(groups.include?(p['groupName'])).to be_false }
         end
       end
     end
 
-    let(:params) { {
-      'name'                          => 'my_new_property',
-      'label'                         => 'This is my new property',
-      'description'                   => 'How much money do you have?',
-      'groupName'                     => 'dealinformation',
-      'type'                          => 'string',
-      'fieldType'                     => 'text',
-      'hidden'                        => false,
-      'options'                       => [{
-                                            'description'  => '',
-                                            'value'        => 'Over $50K',
-                                            'readOnly'     => false,
-                                            'label'        => 'Over $50K',
-                                            'displayOrder' => 0,
-                                            'hidden'       => false,
-                                            'doubleData'   => 0.0
-                                          },
-                                          {
-                                            'description'  => '',
-                                            'value'        => 'Under $50K',
-                                            'readOnly'     => false,
-                                            'label'        => 'Under $50K',
-                                            'displayOrder' => 1,
-                                            'hidden'       => false,
-                                            'doubleData'   => 0.0
-                                          }],
-      'deleted'                       => false,
-      'displayOrder'                  => 0,
-      'formField'                     => true,
-      'readOnlyValue'                 => false,
-      'readOnlyDefinition'            => false,
-      'mutableDefinitionNotDeletable' => false,
-      'calculated'                    => false,
-      'externalOptions'               => false,
-      'displayMode'                   => 'current_value'
-    } }
+    let(:params) do
+      {
+        'name' => 'my_new_property',
+        'label'                         => 'This is my new property',
+        'description'                   => 'How much money do you have?',
+        'groupName'                     => 'dealinformation',
+        'type'                          => 'string',
+        'fieldType'                     => 'text',
+        'hidden'                        => false,
+        'options'                       => [{
+          'description' => '',
+          'value'        => 'Over $50K',
+          'readOnly'     => false,
+          'label'        => 'Over $50K',
+          'displayOrder' => 0,
+          'hidden'       => false,
+          'doubleData'   => 0.0
+        },
+                                            {
+                                              'description'  => '',
+                                              'value'        => 'Under $50K',
+                                              'readOnly'     => false,
+                                              'label'        => 'Under $50K',
+                                              'displayOrder' => 1,
+                                              'hidden'       => false,
+                                              'doubleData'   => 0.0
+                                            }],
+        'deleted'                       => false,
+        'displayOrder'                  => 0,
+        'formField'                     => true,
+        'readOnlyValue'                 => false,
+        'readOnlyDefinition'            => false,
+        'mutableDefinitionNotDeletable' => false,
+        'calculated'                    => false,
+        'externalOptions'               => false,
+        'displayMode'                   => 'current_value'
+      }
+    end
 
     describe '.create!' do
       context 'with no valid parameters' do
@@ -117,7 +119,6 @@ describe Hubspot::DealProperties do
 
     describe '.update!' do
       context 'with no valid parameters' do
-
         it 'should return nil ' do
           expect(Hubspot::DealProperties.update!(params['name'], {})).to be(nil)
         end
@@ -172,7 +173,7 @@ describe Hubspot::DealProperties do
         cassette 'deal_groups_included'
 
         it 'should return the specified groups' do
-          response = Hubspot::DealProperties.groups({}, { include: groups })
+          response = Hubspot::DealProperties.groups({}, include: groups)
           response.each { |p| expect(groups.include?(p['name'])).to be_true }
         end
       end
@@ -181,7 +182,7 @@ describe Hubspot::DealProperties do
         cassette 'deal_groups_not_excluded'
 
         it 'should return groups that were not excluded' do
-          response = Hubspot::DealProperties.groups({}, { exclude: groups })
+          response = Hubspot::DealProperties.groups({}, exclude: groups)
           response.each { |p| expect(groups.include?(p['name'])).to be_false }
         end
       end
@@ -220,7 +221,6 @@ describe Hubspot::DealProperties do
 
     describe '.update_group!' do
       context 'with no valid parameters' do
-
         it 'should return nil ' do
           expect(Hubspot::DealProperties.update_group!(params['name'], {})).to be(nil)
         end
@@ -236,7 +236,6 @@ describe Hubspot::DealProperties do
           expect(Hubspot::DealProperties.same?(response, params)).to be_true
         end
       end
-
     end
 
     describe '.delete_group!' do

@@ -2,7 +2,7 @@ describe 'Contact Properties API Live test', live: true do
   # Let's try to hit all the API endpoints at least once
 
   before do
-    Hubspot.configure hapikey: "demo"
+    Hubspot.configure hapikey: 'demo'
   end
 
   it 'should return a list of properties' do
@@ -14,7 +14,7 @@ describe 'Contact Properties API Live test', live: true do
   it 'should return a list of properties for the specified groups' do
     group_names = %w(contactinformation salesforceinformation)
 
-    result = Hubspot::ContactProperties.all({}, { include: group_names })
+    result = Hubspot::ContactProperties.all({}, include: group_names)
     expect(result.count).to be > 0
     result.each do |entry|
       expect(group_names.include?(entry['groupName']))
@@ -24,7 +24,7 @@ describe 'Contact Properties API Live test', live: true do
   it 'should return a list of properties except for the specified groups' do
     group_names = %w(contactinformation salesforceinformation)
 
-    result = Hubspot::ContactProperties.all({}, { exclude: group_names })
+    result = Hubspot::ContactProperties.all({}, exclude: group_names)
     expect(result.count).to be > 0
     result.each do |entry|
       expect(group_names.include?(entry['groupName'])).to be_false
@@ -35,19 +35,19 @@ describe 'Contact Properties API Live test', live: true do
     result = Hubspot::ContactProperties.groups
 
     expect(result.count).to be > 0
-    expect(result[0].slice(*%w(name displayName displayOrder)).count).to eq(3)
+    expect(result[0].slice('name', 'displayName', 'displayOrder').count).to eq(3)
   end
 
   it 'should return  list of groups and their properties' do
-    result = Hubspot::ContactProperties.groups({ includeProperties: true })
+    result = Hubspot::ContactProperties.groups(includeProperties: true)
 
     expect(result.count).to be > 0
-    expect(result[0].slice(*%w(name displayName displayOrder properties)).count).to eq(4)
+    expect(result[0].slice('name', 'displayName', 'displayOrder', 'properties').count).to eq(4)
   end
 
   it 'should return only the requested groups' do
     group_names = %w(contactinformation salesforceinformation)
-    result      = Hubspot::ContactProperties.groups({}, { include: group_names })
+    result      = Hubspot::ContactProperties.groups({}, include: group_names)
 
     expect(result.count).to eq(group_names.count)
     result.each do |entry|
@@ -57,7 +57,7 @@ describe 'Contact Properties API Live test', live: true do
 
   it 'should filter out the excluded groups' do
     group_names = %w(contactinformation salesforceinformation)
-    result      = Hubspot::ContactProperties.groups({}, { exclude: group_names })
+    result      = Hubspot::ContactProperties.groups({}, exclude: group_names)
 
     result.each do |entry|
       expect(group_names.include?(entry['name'])).to be_false
@@ -65,7 +65,7 @@ describe 'Contact Properties API Live test', live: true do
   end
 
   describe 'should create, update, and delete properties' do
-    let(:data) {
+    let(:data) do
       { 'name'        => 'testfield909',
         'label'       => 'A test property',
         'description' => 'This is a test property',
@@ -73,7 +73,7 @@ describe 'Contact Properties API Live test', live: true do
         'type'        => 'string',
         'fieldType'   => 'text',
         'formField'   => false }
-    }
+    end
 
     it 'should create a new property' do
       response = Hubspot::ContactProperties.create!(data)
@@ -94,11 +94,10 @@ describe 'Contact Properties API Live test', live: true do
   end
 
   describe 'should create, update, and delete property groups' do
-    let(:data) {
+    let(:data) do
       { 'name'         => 'testgroup99',
-        'displayName'  => 'Test Group 99'
-      }
-    }
+        'displayName'  => 'Test Group 99' }
+    end
 
     it 'should create a new property group' do
       response = Hubspot::ContactProperties.create_group!(data)
