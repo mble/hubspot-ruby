@@ -99,7 +99,7 @@ describe Hubspot::Deal do
       end
 
       it 'must get all deals associated to a company' do
-        VCR.use_cassette 'find_company_associated_deals' do
+        VCR.use_cassette 'find_company_associated_deals', record: :new_episodes do
           deals = Hubspot::Deal.find_associated(objectType: 'company', objectId: '352000220')
 
           first = deals.first
@@ -118,7 +118,7 @@ describe Hubspot::Deal do
       end
 
       it 'must get all deals associated to a contact' do
-        VCR.use_cassette 'find_contact_associated_deals' do
+        VCR.use_cassette 'find_contact_associated_deals', record: :new_episodes do
           deals = Hubspot::Deal.find_associated(objectType: 'contact', objectId: '3020024')
 
           first = deals.first

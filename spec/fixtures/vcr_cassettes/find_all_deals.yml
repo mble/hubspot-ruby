@@ -6,13 +6,7 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
+    headers: {}
   response:
     status:
       code: 200
@@ -22,15 +16,11 @@ http_interactions:
       - 'false'
       Content-Type:
       - application/json; charset=UTF-8
-      Vary:
-      - Accept-Encoding
-      - user-agent
+      Content-Length:
+      - '75068'
       Date:
-      - Tue, 31 Jan 2017 14:12:39 GMT
-      Transfer-Encoding:
-      - chunked
+      - Wed, 01 Feb 2017 15:51:50 GMT
       Connection:
-      - Transfer-Encoding
       - keep-alive
     body:
       encoding: UTF-8
@@ -211,6 +201,6 @@ http_interactions:
         Deal","timestamp":1458609378644,"source":"API","sourceVid":[]}]},"amount":{"value":"60000","timestamp":1458609378644,"source":"API","sourceId":null,"versions":[{"name":"amount","value":"60000","timestamp":1458609378644,"source":"API","sourceVid":[]}]},"num_associated_contacts":{"value":"0","timestamp":0,"source":"CALCULATED","sourceId":null,"versions":[{"name":"num_associated_contacts","value":"0","source":"CALCULATED","sourceVid":[]}]}},"imports":[]},{"portalId":62515,"dealId":18807031,"isDeleted":false,"associations":{"associatedVids":[],"associatedCompanyIds":[],"associatedDealIds":[]},"properties":{"dealname":{"value":"Cool
         Deal","timestamp":1458609757903,"source":"API","sourceId":null,"versions":[{"name":"dealname","value":"Cool
         Deal","timestamp":1458609757903,"source":"API","sourceVid":[]}]},"amount":{"value":"60000","timestamp":1458609757903,"source":"API","sourceId":null,"versions":[{"name":"amount","value":"60000","timestamp":1458609757903,"source":"API","sourceVid":[]}]},"num_associated_contacts":{"value":"0","timestamp":0,"source":"CALCULATED","sourceId":null,"versions":[{"name":"num_associated_contacts","value":"0","source":"CALCULATED","sourceVid":[]}]}},"imports":[]}],"hasMore":true,"offset":18807031}'
-    http_version:
-  recorded_at: Tue, 31 Jan 2017 14:12:38 GMT
+    http_version: 
+  recorded_at: Wed, 01 Feb 2017 15:51:50 GMT
 recorded_with: VCR 2.4.0

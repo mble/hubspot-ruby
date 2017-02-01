@@ -12,8 +12,9 @@ module Hubspot
     RECENT_UPDATED_PATH = '/deals/v1/deal/recent/modified'
     UPDATE_DEAL_PATH = '/deals/v1/deal/:deal_id'
     ASSOCIATE_DEAL_PATH = '/deals/v1/deal/:deal_id/associations/:OBJECTTYPE?id=:objectId'
-    PAGED_DEALS_PATH = '/deals/v1/deal/paged?includeAssociations=true&properties=dealname&properties=dealstage&properties=amount'
-    ASSOCIATED_DEAL_PATH = '/deals/v1/deal/associated/:objectType/:objectId/paged?includeAssociations=true&properties=dealname&properties=dealstage&properties=amount'
+    PAGED_DEALS_PATH = '/deals/v1/deal/paged?includeAssociations=true'
+    ASSOCIATED_DEAL_PATH = '/deals/v1/deal/associated/:objectType/:objectId/paged?includeAssociations=true'
+    DEFAULT_PROPERTIES = { properties: ['dealname', 'dealstage', 'amount'] }
 
     attr_reader :properties
     attr_reader :portal_id
@@ -66,7 +67,7 @@ module Hubspot
       # Find all deals
       # {http://developers.hubspot.com/docs/methods/deals/get-all-deals}
       def all(opts = {})
-        response = Hubspot::Connection.get_json(PAGED_DEALS_PATH, opts)
+        response = Hubspot::Connection.get_json(PAGED_DEALS_PATH, opts.merge(DEFAULT_PROPERTIES))
         response['deals'].map { |d| new(d) }
       end
 
@@ -76,7 +77,7 @@ module Hubspot
       # @return [Array<Hubspot::Deal>] array of Hubspot::Deal objects
       def find_associated(opts = {})
         raise(Hubspot::InvalidParams, 'objectType and objectId are mandatory params') unless (opts.keys & %i(objectType objectId)).present?
-        response = Hubspot::Connection.get_json(ASSOCIATED_DEAL_PATH, opts)
+        response = Hubspot::Connection.get_json(ASSOCIATED_DEAL_PATH, opts.merge(DEFAULT_PROPERTIES))
         response['deals'].map { |d| new(d) }
       end
     end
