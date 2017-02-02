@@ -15,14 +15,14 @@ describe Hubspot::CompanyProperties do
   end
 
   let(:example_groups) do
-    VCR.use_cassette('groups_example', record: :once) do
-      HTTParty.get('https://api.hubapi.com/companies/v2/groups?hapikey=demo').parsed_response
+    VCR.use_cassette('groups_example', record: :new_episodes) do
+      HTTParty.get('https://api.hubapi.com/properties/v1/companies/groups?hapikey=demo').parsed_response
     end
   end
 
   let(:example_properties) do
-    VCR.use_cassette('properties_example', record: :once) do
-      HTTParty.get('https://api.hubapi.com/companies/v2/properties?hapikey=demo').parsed_response
+    VCR.use_cassette('properties_example', record: :new_episodes) do
+      HTTParty.get('https://api.hubapi.com/properties/v1/companies/properties?hapikey=demo').parsed_response
     end
   end
 

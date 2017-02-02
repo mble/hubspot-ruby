@@ -63,4 +63,34 @@ http_interactions:
         name ''my_new_property''","correlationId":"1581c088-3a09-4fd2-ab6f-353325ad0d52","requestId":"d448c4d0-cf56-4bce-a468-5d81c5c8cc9e"}'
     http_version: 
   recorded_at: Thu, 18 Aug 2016 14:04:53 GMT
+- request:
+    method: delete
+    uri: https://api.hubapi.com/properties/v1/companies/properties/named/my_new_property?hapikey=demo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Hubspot-Notfound:
+      - 'true'
+      Content-Length:
+      - '195'
+      Date:
+      - Thu, 02 Feb 2017 10:48:20 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":"error","message":"Couldn''t find a Property with the given
+        name ''my_new_property''","correlationId":"16a782b4-091c-4a60-afd1-46e535ddf415","requestId":"21b5dd3d5acaf14d4a75c50b6bdc285f"}'
+    http_version: 
+  recorded_at: Thu, 02 Feb 2017 10:48:20 GMT
 recorded_with: VCR 2.4.0
