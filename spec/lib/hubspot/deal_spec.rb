@@ -144,13 +144,12 @@ describe Hubspot::Deal do
     let(:deal) { Hubspot::Deal.create!(62_515, [8_954_037], [27_136], amount: 30) }
 
     it 'should remove from hubspot' do
-      pending
       expect(Hubspot::Deal.find(deal.deal_id)).to_not be_nil
 
       expect(deal.destroy!).to be_true
       expect(deal.destroyed?).to be_true
 
-      expect(Hubspot::Deal.find(deal.deal_id)).to be_nil
+      expect { Hubspot::Deal.find(deal.deal_id) }.to raise_error Hubspot::RequestError
     end
   end
 
