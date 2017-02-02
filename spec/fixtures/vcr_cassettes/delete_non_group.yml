@@ -123,4 +123,64 @@ http_interactions:
         name ''ff_group235''.","correlationId":"370407a1-2458-4ed6-90e6-5623db7eed1f","requestId":"402ed39dfcc0b228a3a4d15ff5478076"}'
     http_version: 
   recorded_at: Thu, 02 Feb 2017 10:49:08 GMT
+- request:
+    method: delete
+    uri: https://api.hubapi.com/properties/v1/contacts/groups/named/ff_group1?hapikey=demo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Hubspot-Notfound:
+      - 'true'
+      Content-Length:
+      - '187'
+      Date:
+      - Thu, 02 Feb 2017 11:06:49 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":"error","message":"Couldn''t find a Group with the given
+        name ''ff_group1''.","correlationId":"3af97caf-9d37-44af-9903-31dfffa23443","requestId":"8fed96bb056fe7c3480d806bfcc7156d"}'
+    http_version: 
+  recorded_at: Thu, 02 Feb 2017 11:06:50 GMT
+- request:
+    method: delete
+    uri: https://api.hubapi.com/properties/v1/contacts/groups/named/ff_group234?hapikey=demo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      X-Hubspot-Notfound:
+      - 'true'
+      Content-Length:
+      - '189'
+      Date:
+      - Thu, 02 Feb 2017 11:07:40 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"status":"error","message":"Couldn''t find a Group with the given
+        name ''ff_group234''.","correlationId":"02a05281-5c20-40a6-8451-eba17212f061","requestId":"ad458b5cd709ae3b530334b2f9eb5243"}'
+    http_version: 
+  recorded_at: Thu, 02 Feb 2017 11:07:41 GMT
 recorded_with: VCR 2.4.0
