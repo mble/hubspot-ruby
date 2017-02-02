@@ -27,4 +27,33 @@ http_interactions:
       string: '[{"name":"dealinformation","displayName":"Deal Information","displayOrder":0},{"name":"workflowmax","displayName":"WorkflowMAX","displayOrder":1},{"name":"ff_group23","displayName":"","displayOrder":100}]'
     http_version: 
   recorded_at: Tue, 05 Jan 2016 22:51:40 GMT
+- request:
+    method: get
+    uri: https://api.hubapi.com/properties/v1/deals/groups?hapikey=demo
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers: {}
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '770'
+      Date:
+      - Thu, 02 Feb 2017 09:45:12 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[{"name":"dealinformation","displayName":"Deal Information","displayOrder":0,"hubspotDefined":false},{"name":"analyticsinformation","displayName":"Analytics
+        History","displayOrder":1,"hubspotDefined":true},{"name":"workflowmax","displayName":"WorkflowMAX","displayOrder":1,"hubspotDefined":false},{"name":"invoicing","displayName":"Invoicing","displayOrder":2,"hubspotDefined":false},{"name":"invoicing2","displayName":"Invoicing2","displayOrder":6,"hubspotDefined":false},{"name":"ff_group23","displayName":"","displayOrder":100,"hubspotDefined":false},{"name":"salesforceinformation","displayName":"Salesforce
+        Information","displayOrder":101,"hubspotDefined":false},{"name":"name_test_1","displayName":"displayName_test_1","displayOrder":80939,"hubspotDefined":false}]'
+    http_version: 
+  recorded_at: Thu, 02 Feb 2017 09:45:14 GMT
 recorded_with: VCR 2.4.0

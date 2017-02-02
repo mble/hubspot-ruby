@@ -1,13 +1,13 @@
 module Hubspot
   class DealProperties < Properties
-    ALL_PROPERTIES_PATH  = '/deals/v1/properties'
-    ALL_GROUPS_PATH      = '/deals/v1/groups'
-    CREATE_PROPERTY_PATH = '/deals/v1/properties/'
-    UPDATE_PROPERTY_PATH = '/deals/v1/properties/named/:property_name'
-    DELETE_PROPERTY_PATH = '/deals/v1/properties/named/:property_name'
-    CREATE_GROUP_PATH    = '/deals/v1/groups/'
-    UPDATE_GROUP_PATH    = '/deals/v1/groups/named/:group_name'
-    DELETE_GROUP_PATH    = '/deals/v1/groups/named/:group_name'
+    ALL_PROPERTIES_PATH  = '/properties/v1/deals/properties'
+    ALL_GROUPS_PATH      = '/properties/v1/deals/groups'
+    CREATE_PROPERTY_PATH = '/properties/v1/deals/properties/'
+    UPDATE_PROPERTY_PATH = '/properties/v1/deals/properties/named/:property_name'
+    DELETE_PROPERTY_PATH = '/properties/v1/deals/properties/named/:property_name'
+    CREATE_GROUP_PATH    = '/properties/v1/deals/groups/'
+    UPDATE_GROUP_PATH    = '/properties/v1/deals/groups/named/:group_name'
+    DELETE_GROUP_PATH    = '/properties/v1/deals/groups/named/:group_name'
 
     class << self
       def add_default_parameters(opts = {})
