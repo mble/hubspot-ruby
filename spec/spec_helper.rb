@@ -21,6 +21,9 @@ Dir["#{RSPEC_ROOT}/support/**/*.rb"].each { |f| require f }
 
 VCR.configure do |c|
   c.cassette_library_dir = "#{RSPEC_ROOT}/fixtures/vcr_cassettes"
+  c.before_record do |i|
+    i.response.body.force_encoding 'UTF-8'
+  end
   c.hook_into :webmock
 end
 

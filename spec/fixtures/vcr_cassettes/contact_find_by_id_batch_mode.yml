@@ -2,11 +2,17 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.hubapi.com/contacts/v1/contact/vids/batch?hapikey=demo&vid=82325
+    uri: https://api.hubapi.com/contacts/v1/contact/vids/batch?hapikey=demo&vid=3756124
     body:
       encoding: US-ASCII
       string: ''
-    headers: {}
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
   response:
     status:
       code: 200
@@ -16,11 +22,89 @@ http_interactions:
       - 'false'
       Content-Type:
       - application/json; charset=UTF-8
-      Date:
-      - Mon, 23 Feb 2015 01:19:44 GMT
       Vary:
       - Accept-Encoding
+      Date:
+      - Thu, 02 Feb 2017 12:32:10 GMT
+      Content-Length:
+      - '12447'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"3756124":{"vid":3756124,"canonical-vid":3756124,"merged-vids":[],"portal-id":62515,"is-contact":true,"profile-token":"AO_T-mNU7-cEqbGvNtHYSppJR2RlYsneetxIya-4ewEJ39lusQCq9JJdLE-mcPAsbkVl0aIjA2tUjnf3p_JhUmgFngVJ3ywnihXZIXt3V311PXu3OWcH_Crc6yfaMfERyr9YzlAC5CbE","profile-url":"https://app.hubspot.com/contacts/62515/lists/public/contact/_AO_T-mNU7-cEqbGvNtHYSppJR2RlYsneetxIya-4ewEJ39lusQCq9JJdLE-mcPAsbkVl0aIjA2tUjnf3p_JhUmgFngVJ3ywnihXZIXt3V311PXu3OWcH_Crc6yfaMfERyr9YzlAC5CbE/","properties":{"hs_analytics_last_url":{"value":""},"num_unique_conversion_events":{"value":"0"},"hs_analytics_revenue":{"value":"0.0"},"createdate":{"value":"1485984385457"},"hs_analytics_first_referrer":{"value":""},"hs_email_optout":{"value":"true"},"hs_predictivecontactscore":{"value":"50"},"annualrevenue":{"value":"181900000"},"hs_analytics_num_page_views":{"value":"0"},"state":{"value":"EQ"},"fortune_rank":{"value":""},"hs_predictivecontactscorebucket":{"value":"bucket_3"},"hubspotscore":{"value":"0"},"linkedinconnections":{"value":"0"},"hs_lifecyclestage_subscriber_date":{"value":"1485984385457"},"hs_analytics_average_page_views":{"value":"0"},"hs_email_optout_1281663":{"value":""},"lastname":{"value":"Goodall"},"twitterhandle":{"value":"ghidinelli"},"phone":{"value":"715-336-7818"},"num_conversion_events":{"value":"0"},"currentlyinworkflow":{"value":"false"},"hs_analytics_num_event_completions":{"value":"0"},"followercount":{"value":"584"},"hs_email_optout_2849":{"value":""},"associatedcompanyid":{"value":"184896670"},"firstname":{"value":"Mane"},"city":{"value":"Ponyville"},"hs_email_optout_354586":{"value":""},"hs_social_num_broadcast_clicks":{"value":"0"},"hs_analytics_last_timestamp":{"value":""},"hs_analytics_num_visits":{"value":"0"},"twitterbio":{"value":"Racer,
+        entrepreneur, world traveler. Crossfitter, foodie, kitesurfing newbie. If
+        racing is life, I''m building a lifestyle business @MotorsportReg @RaceHeroApp"},"hs_social_linkedin_clicks":{"value":"0"},"hs_analytics_last_visit_timestamp":{"value":""},"hs_social_last_engagement":{"value":""},"hs_twitterid":{"value":"49019793"},"associatedcompanylastupdated":{"value":"15235567569987436"},"hs_analytics_source":{"value":"OFFLINE"},"company":{"value":"HubSpot"},"email":{"value":"testingapis@hubspot.com"},"linkedinbio":{"value":"Racecar
+        driver, entrepreneur, world traveler"},"hs_analytics_first_url":{"value":""},"website":{"value":"http://www.hubspot.com"},"address":{"value":"2782
+        Benson St"},"hs_analytics_first_visit_timestamp":{"value":""},"hs_analytics_first_timestamp":{"value":"1485984385457"},"lastmodifieddate":{"value":"1485984401240"},"photo":{"value":"https://d2ojpxxtu63wzl.cloudfront.net/static/5b37fd1365186dd697c8a4c950be4222_f4b374414287ef87185ce792c90c266ce333e83eac137c3105bdbd20994556a5"},"hs_social_google_plus_clicks":{"value":"0"},"hs_analytics_last_referrer":{"value":""},"kloutscoregeneral":{"value":"48"},"hs_email_optout_230318":{"value":""},"hs_social_facebook_clicks":{"value":"0"},"twitterprofilephoto":{"value":"https://pbs.twimg.com/profile_images/712369625632116736/PNku5AjB_reasonably_small.jpg"},"hs_analytics_source_data_2":{"value":"contact-upsert"},"hs_social_twitter_clicks":{"value":"0"},"hs_analytics_source_data_1":{"value":"API"},"lifecyclestage":{"value":"subscriber"},"hs_email_sends_since_last_engagement":{"value":"0"}},"form-submissions":[],"identity-profiles":[{"vid":3756124,"saved-at-timestamp":1485984385618,"deleted-changed-timestamp":0,"identities":[{"type":"EMAIL","value":"testingapis@hubspot.com","timestamp":1485984385457},{"type":"LEAD_GUID","value":"9dcbd69c-631c-42bc-a6f0-9f27e08336e8","timestamp":1485984385461}]}],"merge-audits":[],"associated-company":{"company-id":184896670,"portal-id":62515,"properties":{"country":{"value":"United
+        States"},"city":{"value":"Cambridge"},"num_associated_contacts":{"value":"162"},"timezone":{"value":"America/New_York"},"facebook_company_page":{"value":"https://www.facebook.com/hubspot"},"createdate":{"value":"1457708103847"},"description":{"value":"HubSpot
+        is the world’s leading inbound marketing and sales platform. Since 2006, HubSpot
+        has been on a mission to make the world more inbound. Today, over 10,000 customers
+        in 65 countries use HubSpot’s software, services, and support to transform
+        the way they attract, engage, and delight customers. HubSpot’s inbound marketing
+        software, ranked #1 in customer satisfaction by VentureBeat and G2Crowd, includes
+        social media publishing and monitoring, blogging, SEO, website content management,
+        email marketing, marketing automation, and reporting and analytics, all in
+        one integrated platform. Signals, HubSpot’s award-winning sales application,
+        enables sales and service teams to have more effective conversations with
+        leads, prospects, and customers. HubSpot is headquartered in Cambridge, MA
+        with an office in Dublin, Ireland, and has been recognized by Inc., Forbes,
+        and Deloitte as one of the world’s fastest-growing companies."},"industry":{"value":"COMPUTER_SOFTWARE"},"total_money_raised":{"value":"$100.5M"},"days_to_close":{"value":"220"},"hs_analytics_num_visits":{"value":"0"},"linkedin_company_page":{"value":"http://www.linkedin.com/company/68529"},"recent_conversion_event_name":{"value":"Contact
+        Us: excedalogic form"},"hs_analytics_source":{"value":"OFFLINE"},"num_contacted_notes":{"value":"12"},"annualrevenue":{"value":"250000000"},"founded_year":{"value":"2006"},"hs_analytics_num_page_views":{"value":"0"},"state":{"value":"MA"},"linkedinbio":{"value":"HubSpot
+        is the world’s leading inbound marketing and sales platform. Since 2006, HubSpot
+        has been on a mission to make the world more inbound. Today, over 10,000 customers
+        in 65 countries use HubSpot’s software, services, and support to transform
+        the way they attract, engage, and delight customers. HubSpot’s inbound marketing
+        software, ranked #1 in customer satisfaction by VentureBeat and G2Crowd, includes
+        social media publishing and monitoring, blogging, SEO, website content management,
+        email marketing, marketing automation, and reporting and analytics, all in
+        one integrated platform. Signals, HubSpot’s award-winning sales application,
+        enables sales and service teams to have more effective conversations with
+        leads, prospects, and customers. HubSpot is headquartered in Cambridge, MA
+        with an office in Dublin, Ireland, and has been recognized by Inc., Forbes,
+        and Deloitte as one of the world’s fastest-growing companies."},"notes_next_activity_date":{"value":""},"zip":{"value":"02141"},"notes_last_updated":{"value":"1480625888696"},"website":{"value":"hubspot.com"},"closedate":{"value":"1476768116137"},"hs_analytics_first_timestamp":{"value":"1390574181854"},"first_conversion_date":{"value":"1481646333720"},"engagements_last_meeting_booked":{"value":""},"first_contact_createdate":{"value":"1390574181854"},"twitterhandle":{"value":"HubSpot"},"hs_lastmodifieddate":{"value":"1485984386209"},"notes_last_contacted":{"value":"1479030015191"},"phone":{"value":"+1
+        888-482-7768"},"num_conversion_events":{"value":"12"},"domain":{"value":"hubspot.com"},"is_public":{"value":"true"},"name":{"value":"Hubspot,
+        Inc."},"recent_conversion_date":{"value":"1485868078605"},"hs_analytics_source_data_2":{"value":""},"hs_analytics_source_data_1":{"value":""},"first_conversion_event_name":{"value":"Título
+        da Página: Teste 13/12"},"num_notes":{"value":"12"}}}},"3018724":{"vid":3018724,"canonical-vid":3018724,"merged-vids":[],"portal-id":62515,"is-contact":true,"profile-token":"AO_T-mN9KjhszMAJVKvzjS9AEOYZSH_8RCyAZRy1AXVBxUzX6Sd-tS8WRx6PrEiWYwNQ-L8yJHZooxwHzv35VvFb7cCeUG13BGFAtAaYtTFOOiJO0dUDHxjr6_gLCw9cx9QGwrMkTK_r","profile-url":"https://app.hubspot.com/contacts/62515/lists/public/contact/_AO_T-mN9KjhszMAJVKvzjS9AEOYZSH_8RCyAZRy1AXVBxUzX6Sd-tS8WRx6PrEiWYwNQ-L8yJHZooxwHzv35VvFb7cCeUG13BGFAtAaYtTFOOiJO0dUDHxjr6_gLCw9cx9QGwrMkTK_r/","properties":{"account_type":{"value":"Customer"},"associatedcompanyid":{"value":"117000871"},"firstname":{"value":"Smith"},"hs_analytics_last_url":{"value":""},"hs_email_optout_354586":{"value":""},"num_unique_conversion_events":{"value":"0"},"hs_analytics_revenue":{"value":"0.0"},"createdate":{"value":"1478323752698"},"hs_social_num_broadcast_clicks":{"value":"0"},"hs_analytics_first_referrer":{"value":""},"hs_analytics_last_timestamp":{"value":""},"hs_email_optout":{"value":""},"hs_predictivecontactscore":{"value":"49"},"hs_analytics_num_visits":{"value":"0"},"twitterbio":{"value":""},"hs_social_linkedin_clicks":{"value":"0"},"hs_analytics_last_visit_timestamp":{"value":""},"hs_social_last_engagement":{"value":""},"hs_twitterid":{"value":"418579250"},"hubspot_owner_id":{"value":"72"},"associatedcompanylastupdated":{"value":"7550937864089313"},"hs_analytics_source":{"value":"OFFLINE"},"hs_analytics_num_page_views":{"value":"0"},"email":{"value":"smith@example.com"},"hs_analytics_first_url":{"value":""},"hs_predictivecontactscorebucket":{"value":"bucket_2"},"hubspotscore":{"value":"0"},"hs_analytics_first_visit_timestamp":{"value":""},"hs_analytics_first_timestamp":{"value":"1478323752698"},"lastmodifieddate":{"value":"1485537890410"},"hs_social_google_plus_clicks":{"value":"0"},"hs_analytics_last_referrer":{"value":""},"hs_analytics_average_page_views":{"value":"0"},"hs_email_optout_230318":{"value":""},"twitterhandle":{"value":"fhelyjake"},"hs_social_facebook_clicks":{"value":"0"},"hubspot_owner_assigneddate":{"value":"1485537739604"},"num_conversion_events":{"value":"0"},"twitterprofilephoto":{"value":""},"hs_analytics_num_event_completions":{"value":"0"},"hs_analytics_source_data_2":{"value":"auditId=null"},"hs_social_twitter_clicks":{"value":"0"},"hs_analytics_source_data_1":{"value":"BATCH_UPDATE"},"followercount":{"value":"0"},"hs_email_sends_since_last_engagement":{"value":"0"},"hs_email_optout_2849":{"value":""}},"form-submissions":[],"identity-profiles":[{"vid":3018724,"saved-at-timestamp":1478323753321,"deleted-changed-timestamp":0,"identities":[{"type":"EMAIL","value":"smith@example.com","timestamp":1478323752698},{"type":"LEAD_GUID","value":"7aebd676-0e5c-443e-8a6b-c381bc8de98d","timestamp":1478323753310}]}],"merge-audits":[],"associated-company":{"company-id":117000871,"portal-id":62515,"properties":{"country":{"value":"United
+        States"},"city":{"value":"Concord"},"num_associated_contacts":{"value":"4"},"timezone":{"value":"America/Los_Angeles"},"createdate":{"value":"1458391823423"},"description":{"value":"A
+        far better description than before"},"days_to_close":{"value":"18"},"hs_analytics_last_timestamp":{"value":"1478107607797"},"hs_analytics_num_visits":{"value":"0"},"linkedin_company_page":{"value":"http://www.linkedin.com/company/3245735"},"recent_conversion_event_name":{"value":"Form1"},"hs_analytics_last_visit_timestamp":{"value":"1478107607797"},"hs_analytics_source":{"value":"DIRECT_TRAFFIC"},"num_contacted_notes":{"value":"6"},"annualrevenue":{"value":"10000000"},"founded_year":{"value":"1992"},"hs_analytics_num_page_views":{"value":"1"},"state":{"value":"CA"},"linkedinbio":{"value":"Ringalytics
+        is an advertising platform for playing interactive audio-based ads on telephone
+        calls. On the supply side, we help publishers of business directory information
+        monetize phone calls originating from their sites. On the demand side, we
+        offer the engagement of a captive play audio ad combined with the targeting
+        efficacy of web based advertising, and layer on top of this interactive SMS
+        capabilities for response-focused marketers."},"notes_next_activity_date":{"value":""},"zip":{"value":"94520"},"notes_last_updated":{"value":"1464686263054"},"website":{"value":"example.com"},"address":{"value":"4020
+        Nelson Ave"},"closedate":{"value":"1459980724598"},"hs_analytics_first_visit_timestamp":{"value":"1478107607797"},"hs_analytics_first_timestamp":{"value":"1478107607787"},"first_conversion_date":{"value":"1479682500284"},"engagements_last_meeting_booked":{"value":""},"first_contact_createdate":{"value":"1478107607787"},"hs_lastmodifieddate":{"value":"1485746730186"},"notes_last_contacted":{"value":"1464686263054"},"phone":{"value":"1
+        (925) 682-3740"},"num_conversion_events":{"value":"1"},"domain":{"value":"example.com"},"is_public":{"value":"false"},"name":{"value":"A
+        company name"},"recent_conversion_date":{"value":"1479682500284"},"hs_analytics_source_data_2":{"value":""},"hs_analytics_source_data_1":{"value":""},"first_conversion_event_name":{"value":"Form1"},"num_notes":{"value":"6"}}}}}'
+    http_version: 
+  recorded_at: Thu, 02 Feb 2017 12:32:10 GMT
+- request:
+    method: get
+    uri: https://api.hubapi.com/contacts/v1/contact/vids/batch?hapikey=demo&vid=999999999
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
       - Accept-Encoding
+      Date:
+      - Thu, 02 Feb 2017 12:42:21 GMT
       Content-Length:
       - '2'
       Connection:
@@ -29,5 +113,5 @@ http_interactions:
       encoding: UTF-8
       string: "{}"
     http_version: 
-  recorded_at: Mon, 23 Feb 2015 01:19:44 GMT
+  recorded_at: Thu, 02 Feb 2017 12:42:21 GMT
 recorded_with: VCR 2.4.0
