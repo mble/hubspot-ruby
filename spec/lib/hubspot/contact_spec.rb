@@ -172,10 +172,40 @@ describe Hubspot::Contact do
     context 'batch mode' do
       cassette 'contact_find_by_id_batch_mode'
 
-      # NOTE: error currently appends on API endpoint
-      it 'find lists of contacts' do
-        expect { Hubspot::Contact.find_by_id([82_325]) }.to raise_error(Hubspot::ApiError)
-        expect(@s.string).to include('Response: 200')
+      context 'when contacts are found' do
+        subject { Hubspot::Contact.find_by_id([3_018_724, 3_756_124]) }
+
+        it 'does not raise an error' do
+          expect { subject }.to_not raise_error(Hubspot::ApiError)
+        end
+
+        it 'returns an array the size of the number of returned records' do
+          expect(subject.size).to eql 2
+        end
+
+        it 'wraps the records in Hubspot::Contact objects' do
+          first = subject.first
+          last = subject.last
+
+          expect(first).to be_a Hubspot::Contact
+          expect(first.vid).to eql 3_756_124
+          expect(first['firstname']).to eql 'Mane'
+          expect(first['lastname']).to eql 'Goodall'
+
+          expect(last).to be_a Hubspot::Contact
+          expect(last.vid).to eql 3_018_724
+          expect(last['firstname']).to eql 'Smith'
+          expect(last['lastname']).to be_nil
+        end
+      end
+
+      context 'when contacts are not found' do
+        subject { Hubspot::Contact.find_by_id([999_999_999]) }
+
+        it 'returns an empty array' do
+          expect(subject).to be_an_instance_of Array
+          expect(subject).to be_empty
+        end
       end
     end
   end
