@@ -138,9 +138,23 @@ describe Hubspot::Contact do
       cassette 'contact_find_by_email_batch_mode'
 
       it 'find lists of contacts' do
-        emails = ['testingapis@hubspot.com', 'testingapisawesomeandstuff@hubspot.com']
+        emails = ['testingapis@hubspot.com', 'smith@example.com']
         contacts = Hubspot::Contact.find_by_email(emails)
-        pending
+
+        expect(contacts.size).to eql 2
+
+        first = contacts.first
+        last = contacts.last
+
+        expect(first).to be_a Hubspot::Contact
+        expect(first.vid).to eql 3_756_124
+        expect(first['firstname']).to eql 'Mane'
+        expect(first['lastname']).to eql 'Goodall'
+
+        expect(last).to be_a Hubspot::Contact
+        expect(last.vid).to eql 3_018_724
+        expect(last['firstname']).to eql 'Smith'
+        expect(last['lastname']).to be_nil
       end
     end
   end
