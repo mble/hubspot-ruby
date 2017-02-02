@@ -51,8 +51,6 @@ describe 'properties rake tasks', live: true do
       end
 
       it 'saves the properties to a file' do
-        pending 'Hubspot disabled this call using the demo hapikey'
-
         run_rake_task
 
         props = JSON.parse(File.read(file))
@@ -69,8 +67,6 @@ describe 'properties rake tasks', live: true do
       end
 
       it 'should not need to make any changes' do
-        pending 'Hubspot disabled this call using the demo hapikey'
-
         results = capture_stdout { run_rake_task }
         expect(results.include?('Created: ')).to be_false
         expect(results.include?('Updated: ')).to be_false

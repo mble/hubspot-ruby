@@ -6,14 +6,12 @@ describe 'Deal Properties API Live test', live: true do
   end
 
   it 'should return a list of properties' do
-    pending 'Broken by Hubspot'
     result = Hubspot::DealProperties.all
 
     expect(result.count).to be > 0
   end
 
   it 'should return a list of properties for the specified groups' do
-    pending 'Broken by Hubspot'
     group_names = %w(dealinformation)
 
     result = Hubspot::DealProperties.all({}, include: group_names)
@@ -24,7 +22,6 @@ describe 'Deal Properties API Live test', live: true do
   end
 
   it 'should return a list of properties except for the specified groups' do
-    pending 'Broken by Hubspot'
     group_names = %w(dealinformation)
 
     result = Hubspot::DealProperties.all({}, exclude: group_names)
