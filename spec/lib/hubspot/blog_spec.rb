@@ -70,8 +70,7 @@ describe Hubspot do
         end
 
         it 'by created ascending' do
-          pending
-          created_timestamps = blog.posts({ order_by: '+created' }.merge(created_range_params)).map { |post| post['created'] }
+          created_timestamps = blog.posts({ order_by: 'created' }.merge(created_range_params)).map { |post| post['created'] }
           expect(created_timestamps.sort).to eq(created_timestamps)
         end
       end
