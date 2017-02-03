@@ -68,7 +68,8 @@ describe Hubspot::Connection do
       end
 
       context 'when OAuth2 is being used' do
-        before { Hubspot.configure(use_oauth2: true) }
+        before { Hubspot.configure(use_oauth2: true, hapikey: nil) }
+
         it 'does not raise a config error' do
           expect { subject }.to_not raise_error Hubspot::ConfigurationError
         end
@@ -125,6 +126,41 @@ describe Hubspot::Connection do
         let(:path) { Hubspot::ContactList::LIST_BATCH_PATH }
         let(:params) { { batch_list_id: [1, 2, 3] } }
         it { should == 'https://api.hubapi.com/contacts/v1/lists/batch?listId=1&listId=2&listId=3&hapikey=demo' }
+      end
+    end
+
+    describe '.set_oauth2_headers' do
+      subject { Hubspot::Connection.send :set_oauth2_headers }
+
+      context 'when OAuth2 is not used' do
+        before { Hubspot.configure use_oauth2: false }
+        it 'does not raise a config error' do
+          expect { subject }.to_not raise_error Hubspot::ConfigurationError
+        end
+
+        it 'does not set the OAuth2 authorization headers' do
+          subject
+          expect(Hubspot::Connection.default_options[:headers]).to eql({})
+        end
+      end
+
+      context 'when OAuth2 is being used, but not token is supplied' do
+        before { Hubspot.configure use_oauth2: true  }
+        it 'raises a config error' do
+          expect { subject }.to raise_error Hubspot::ConfigurationError
+        end
+      end
+
+      context 'when OAuth2 is being used and a token is supplied' do
+        before { Hubspot.configure use_oauth2: true, oauth2_access_token: 'd2hhdCBhIHdvbmRlcmZ1bCB0ZXN0' }
+        it 'does not raise a config error' do
+          expect { subject }.to_not raise_error Hubspot::ConfigurationError
+        end
+
+        it 'sets the OAuth2 authorization headers' do
+          subject
+          expect(Hubspot::Connection.default_options[:headers]).to eq 'Authorization' => 'Bearer d2hhdCBhIHdvbmRlcmZ1bCB0ZXN0'
+        end
       end
     end
   end

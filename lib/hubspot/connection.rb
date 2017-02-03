@@ -48,6 +48,7 @@ module Hubspot
       protected
 
       def set_oauth2_headers
+        # TODO: Better to have different connection strategies depending on configuration
         raise Hubspot::ConfigurationError, 'OAuth2 access token must be provided when using OAuth2' if Hubspot::Config.use_oauth2 && !oauth2_usage_valid?
         headers 'Authorization' => "Bearer #{Hubspot::Config.oauth2_access_token}" if Hubspot::Config.use_oauth2 && oauth2_usage_valid?
       end
