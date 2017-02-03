@@ -1,0 +1,96 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hubapi.com/companies/v2/companies/domain/hubspot.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer CLC_oK2gKxICEQEYs-gDILqTDSiRtwIyGQBC-5IT1m0sMv7-biuemlnQWqVSxd0qzOQ
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '15102'
+      Date:
+      - Fri, 03 Feb 2017 17:16:42 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[{"portalId":62515,"companyId":184896670,"isDeleted":false,"properties":{"country":{"value":"United
+        States","timestamp":1457708103906,"source":"BIDEN","sourceId":"country","versions":[{"name":"country","value":"United
+        States","timestamp":1457708103906,"sourceId":"country","source":"BIDEN","sourceVid":[]}]},"city":{"value":"Cambridge","timestamp":1457708103906,"source":"BIDEN","sourceId":"city","versions":[{"name":"city","value":"Cambridge","timestamp":1457708103906,"sourceId":"city","source":"BIDEN","sourceVid":[]}]},"num_associated_contacts":{"value":"164","timestamp":1486112895324,"source":"COMPANIES","sourceId":null,"versions":[{"name":"num_associated_contacts","value":"164","timestamp":1486112895324,"source":"COMPANIES","sourceVid":[]}]},"timezone":{"value":"America/New_York","timestamp":1457708103906,"source":"BIDEN","sourceId":"timezone","versions":[{"name":"timezone","value":"America/New_York","timestamp":1457708103906,"sourceId":"timezone","source":"BIDEN","sourceVid":[]}]},"facebook_company_page":{"value":"https://www.facebook.com/hubspot","timestamp":1457708103906,"source":"BIDEN","sourceId":"facebookpageurl","versions":[{"name":"facebook_company_page","value":"https://www.facebook.com/hubspot","timestamp":1457708103906,"sourceId":"facebookpageurl","source":"BIDEN","sourceVid":[]}]},"createdate":{"value":"1457708103847","timestamp":1457708103847,"source":"API","sourceId":null,"versions":[{"name":"createdate","value":"1457708103847","timestamp":1457708103847,"source":"API","sourceVid":[]}]},"description":{"value":"HubSpot
+        is the world’s leading inbound marketing and sales platform. Since 2006, HubSpot
+        has been on a mission to make the world more inbound. Today, over 10,000 customers
+        in 65 countries use HubSpot’s software, services, and support to transform
+        the way they attract, engage, and delight customers. HubSpot’s inbound marketing
+        software, ranked #1 in customer satisfaction by VentureBeat and G2Crowd, includes
+        social media publishing and monitoring, blogging, SEO, website content management,
+        email marketing, marketing automation, and reporting and analytics, all in
+        one integrated platform. Signals, HubSpot’s award-winning sales application,
+        enables sales and service teams to have more effective conversations with
+        leads, prospects, and customers. HubSpot is headquartered in Cambridge, MA
+        with an office in Dublin, Ireland, and has been recognized by Inc., Forbes,
+        and Deloitte as one of the world’s fastest-growing companies.","timestamp":1457708103906,"source":"BIDEN","sourceId":"longdescription","versions":[{"name":"description","value":"HubSpot
+        is the world’s leading inbound marketing and sales platform. Since 2006, HubSpot
+        has been on a mission to make the world more inbound. Today, over 10,000 customers
+        in 65 countries use HubSpot’s software, services, and support to transform
+        the way they attract, engage, and delight customers. HubSpot’s inbound marketing
+        software, ranked #1 in customer satisfaction by VentureBeat and G2Crowd, includes
+        social media publishing and monitoring, blogging, SEO, website content management,
+        email marketing, marketing automation, and reporting and analytics, all in
+        one integrated platform. Signals, HubSpot’s award-winning sales application,
+        enables sales and service teams to have more effective conversations with
+        leads, prospects, and customers. HubSpot is headquartered in Cambridge, MA
+        with an office in Dublin, Ireland, and has been recognized by Inc., Forbes,
+        and Deloitte as one of the world’s fastest-growing companies.","timestamp":1457708103906,"sourceId":"longdescription","source":"BIDEN","sourceVid":[]}]},"industry":{"value":"COMPUTER_SOFTWARE","timestamp":1457708103906,"source":"BIDEN","sourceId":"industry","versions":[{"name":"industry","value":"COMPUTER_SOFTWARE","timestamp":1457708103906,"sourceId":"industry","source":"BIDEN","sourceVid":[]}]},"total_money_raised":{"value":"$100.5M","timestamp":1457708103906,"source":"BIDEN","sourceId":"totalmoneyraised","versions":[{"name":"total_money_raised","value":"$100.5M","timestamp":1457708103906,"sourceId":"totalmoneyraised","source":"BIDEN","sourceVid":[]}]},"days_to_close":{"value":"220","timestamp":1477684787636,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"days_to_close","value":"220","timestamp":1477684787636,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"hs_analytics_num_visits":{"value":"0","timestamp":1457709348097,"source":"CALCULATED","sourceId":"company
+        sync triggered by vid=937174","versions":[{"name":"hs_analytics_num_visits","value":"0","timestamp":1457709348097,"sourceId":"company
+        sync triggered by vid=937174","source":"CALCULATED","sourceVid":[]}]},"linkedin_company_page":{"value":"http://www.linkedin.com/company/68529","timestamp":1457708103906,"source":"BIDEN","sourceId":"linkedinurl","versions":[{"name":"linkedin_company_page","value":"http://www.linkedin.com/company/68529","timestamp":1457708103906,"sourceId":"linkedinurl","source":"BIDEN","sourceVid":[]}]},"recent_conversion_event_name":{"value":"Contact
+        Us: excedalogic form","timestamp":1485866976572,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"recent_conversion_event_name","value":"Contact
+        Us: excedalogic form","timestamp":1485866976572,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"hs_analytics_source":{"value":"OFFLINE","timestamp":1457709348097,"source":"CALCULATED","sourceId":"company
+        sync triggered by vid=937174","versions":[{"name":"hs_analytics_source","value":"OFFLINE","timestamp":1457709348097,"sourceId":"company
+        sync triggered by vid=937174","source":"CALCULATED","sourceVid":[]}]},"num_contacted_notes":{"value":"12","timestamp":1481164374350,"source":"MIGRATION","sourceId":"CompaniesBatchMutation","versions":[{"name":"num_contacted_notes","value":"12","timestamp":1481164374350,"sourceId":"CompaniesBatchMutation","source":"MIGRATION","sourceVid":[]}]},"annualrevenue":{"value":"250000000","timestamp":1457708103906,"source":"BIDEN","sourceId":"maxrevenue","versions":[{"name":"annualrevenue","value":"250000000","timestamp":1457708103906,"sourceId":"maxrevenue","source":"BIDEN","sourceVid":[]}]},"founded_year":{"value":"2006","timestamp":1457708103906,"source":"BIDEN","sourceId":"foundedyear","versions":[{"name":"founded_year","value":"2006","timestamp":1457708103906,"sourceId":"foundedyear","source":"BIDEN","sourceVid":[]}]},"hs_analytics_num_page_views":{"value":"0","timestamp":1457709348097,"source":"CALCULATED","sourceId":"company
+        sync triggered by vid=937174","versions":[{"name":"hs_analytics_num_page_views","value":"0","timestamp":1457709348097,"sourceId":"company
+        sync triggered by vid=937174","source":"CALCULATED","sourceVid":[]}]},"state":{"value":"MA","timestamp":1457708103906,"source":"BIDEN","sourceId":"state","versions":[{"name":"state","value":"MA","timestamp":1457708103906,"sourceId":"state","source":"BIDEN","sourceVid":[]}]},"linkedinbio":{"value":"HubSpot
+        is the world’s leading inbound marketing and sales platform. Since 2006, HubSpot
+        has been on a mission to make the world more inbound. Today, over 10,000 customers
+        in 65 countries use HubSpot’s software, services, and support to transform
+        the way they attract, engage, and delight customers. HubSpot’s inbound marketing
+        software, ranked #1 in customer satisfaction by VentureBeat and G2Crowd, includes
+        social media publishing and monitoring, blogging, SEO, website content management,
+        email marketing, marketing automation, and reporting and analytics, all in
+        one integrated platform. Signals, HubSpot’s award-winning sales application,
+        enables sales and service teams to have more effective conversations with
+        leads, prospects, and customers. HubSpot is headquartered in Cambridge, MA
+        with an office in Dublin, Ireland, and has been recognized by Inc., Forbes,
+        and Deloitte as one of the world’s fastest-growing companies.","timestamp":1457708103906,"source":"BIDEN","sourceId":"longdescription","versions":[{"name":"linkedinbio","value":"HubSpot
+        is the world’s leading inbound marketing and sales platform. Since 2006, HubSpot
+        has been on a mission to make the world more inbound. Today, over 10,000 customers
+        in 65 countries use HubSpot’s software, services, and support to transform
+        the way they attract, engage, and delight customers. HubSpot’s inbound marketing
+        software, ranked #1 in customer satisfaction by VentureBeat and G2Crowd, includes
+        social media publishing and monitoring, blogging, SEO, website content management,
+        email marketing, marketing automation, and reporting and analytics, all in
+        one integrated platform. Signals, HubSpot’s award-winning sales application,
+        enables sales and service teams to have more effective conversations with
+        leads, prospects, and customers. HubSpot is headquartered in Cambridge, MA
+        with an office in Dublin, Ireland, and has been recognized by Inc., Forbes,
+        and Deloitte as one of the world’s fastest-growing companies.","timestamp":1457708103906,"sourceId":"longdescription","source":"BIDEN","sourceVid":[]}]},"notes_next_activity_date":{"value":"","timestamp":1473963674317,"source":"ENGAGEMENTS","sourceId":"CompaniesBatchMutation","versions":[{"name":"notes_next_activity_date","value":"","timestamp":1473963674317,"sourceId":"CompaniesBatchMutation","source":"ENGAGEMENTS","sourceVid":[]}]},"zip":{"value":"02141","timestamp":1457708103906,"source":"BIDEN","sourceId":"zipcode","versions":[{"name":"zip","value":"02141","timestamp":1457708103906,"sourceId":"zipcode","source":"BIDEN","sourceVid":[]}]},"notes_last_updated":{"value":"1480625888696","timestamp":1481007362071,"source":"ENGAGEMENTS","sourceId":"CompaniesBatchMutation","versions":[{"name":"notes_last_updated","value":"1480625888696","timestamp":1481007362071,"sourceId":"CompaniesBatchMutation","source":"ENGAGEMENTS","sourceVid":[]}]},"website":{"value":"hubspot.com","timestamp":1457708103847,"source":"COMPANIES","sourceId":null,"versions":[{"name":"website","value":"hubspot.com","timestamp":1457708103847,"source":"COMPANIES","sourceVid":[]}]},"closedate":{"value":"1476768116137","timestamp":1477684787636,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"closedate","value":"1476768116137","timestamp":1477684787636,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"hs_analytics_first_timestamp":{"value":"1390574181854","timestamp":1473963575853,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"hs_analytics_first_timestamp","value":"1390574181854","timestamp":1473963575853,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"first_conversion_date":{"value":"1481646333720","timestamp":1485773693384,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"first_conversion_date","value":"1481646333720","timestamp":1485773693384,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"engagements_last_meeting_booked":{"value":"","timestamp":1473963674317,"source":"ENGAGEMENTS","sourceId":"CompaniesBatchMutation","versions":[{"name":"engagements_last_meeting_booked","value":"","timestamp":1473963674317,"sourceId":"CompaniesBatchMutation","source":"ENGAGEMENTS","sourceVid":[]}]},"first_contact_createdate":{"value":"1390574181854","timestamp":1473963575853,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"first_contact_createdate","value":"1390574181854","timestamp":1473963575853,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"twitterhandle":{"value":"HubSpot","timestamp":1457708103906,"source":"BIDEN","sourceId":"twitterusername","versions":[{"name":"twitterhandle","value":"HubSpot","timestamp":1457708103906,"sourceId":"twitterusername","source":"BIDEN","sourceVid":[]}]},"hs_lastmodifieddate":{"value":"1486112895330","timestamp":1486112895330,"source":"CALCULATED","sourceId":null,"versions":[{"name":"hs_lastmodifieddate","value":"1486112895330","timestamp":1486112895330,"source":"CALCULATED","sourceVid":[]}]},"notes_last_contacted":{"value":"1479030015191","timestamp":1481164374350,"source":"MIGRATION","sourceId":"CompaniesBatchMutation","versions":[{"name":"notes_last_contacted","value":"1479030015191","timestamp":1481164374350,"sourceId":"CompaniesBatchMutation","source":"MIGRATION","sourceVid":[]}]},"phone":{"value":"+1
+        888-482-7768","timestamp":1457708103906,"source":"BIDEN","sourceId":"phonenumber","versions":[{"name":"phone","value":"+1
+        888-482-7768","timestamp":1457708103906,"sourceId":"phonenumber","source":"BIDEN","sourceVid":[]}]},"num_conversion_events":{"value":"12","timestamp":1485868080932,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"num_conversion_events","value":"12","timestamp":1485868080932,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"domain":{"value":"hubspot.com","timestamp":1457708103847,"source":"COMPANIES","sourceId":null,"versions":[{"name":"domain","value":"hubspot.com","timestamp":1457708103847,"source":"COMPANIES","sourceVid":[]}]},"is_public":{"value":"true","timestamp":1457708103906,"source":"BIDEN","sourceId":"ispublic","versions":[{"name":"is_public","value":"true","timestamp":1457708103906,"sourceId":"ispublic","source":"BIDEN","sourceVid":[]}]},"name":{"value":"Hubspot,
+        Inc.","timestamp":1457708103906,"source":"BIDEN","sourceId":"name","versions":[{"name":"name","value":"Hubspot,
+        Inc.","timestamp":1457708103906,"sourceId":"name","source":"BIDEN","sourceVid":[]}]},"recent_conversion_date":{"value":"1485868078605","timestamp":1485868080932,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"recent_conversion_date","value":"1485868078605","timestamp":1485868080932,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"hs_analytics_source_data_2":{"value":"","timestamp":1473963575853,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"hs_analytics_source_data_2","value":"","timestamp":1473963575853,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"hs_analytics_source_data_1":{"value":"","timestamp":1473963575853,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"hs_analytics_source_data_1","value":"","timestamp":1473963575853,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"first_conversion_event_name":{"value":"Título
+        da Página: Teste 13/12","timestamp":1485773693384,"source":"CALCULATED","sourceId":"CompaniesBatchMutation","versions":[{"name":"first_conversion_event_name","value":"Título
+        da Página: Teste 13/12","timestamp":1485773693384,"sourceId":"CompaniesBatchMutation","source":"CALCULATED","sourceVid":[]}]},"num_notes":{"value":"12","timestamp":1481164374350,"source":"MIGRATION","sourceId":"CompaniesBatchMutation","versions":[{"name":"num_notes","value":"12","timestamp":1481164374350,"sourceId":"CompaniesBatchMutation","source":"MIGRATION","sourceVid":[]}]}},"additionalDomains":[]}]'
+    http_version: 
+  recorded_at: Fri, 03 Feb 2017 17:16:42 GMT
+recorded_with: VCR 2.4.0

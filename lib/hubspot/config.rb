@@ -22,6 +22,7 @@ module Hubspot
       def reset!
         @hapikey = nil
         @use_oauth2 = nil
+        @oauth2_access_token = nil
         @base_url = DEFAULT_BASE_URL
         @portal_id = nil
         @logger = DEFAULT_LOGGER

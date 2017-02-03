@@ -137,11 +137,6 @@ describe Hubspot::Connection do
         it 'does not raise a config error' do
           expect { subject }.to_not raise_error Hubspot::ConfigurationError
         end
-
-        it 'does not set the OAuth2 authorization headers' do
-          subject
-          expect(Hubspot::Connection.default_options[:headers]).to eql({})
-        end
       end
 
       context 'when OAuth2 is being used, but not token is supplied' do
