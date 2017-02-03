@@ -9,7 +9,7 @@ module Hubspot
         url = generate_url(path, opts)
         response = get(url, format: :json)
         log_request_and_response url, response
-        raise Hubspot::RequestError, response unless response.success?
+        handle_errors response unless response.success?
         response.parsed_response
       end
 
@@ -20,7 +20,7 @@ module Hubspot
         url = generate_url(path, opts[:params])
         response = post(url, body: opts[:body].to_json, headers: { 'Content-Type' => 'application/json' }, format: :json)
         log_request_and_response url, response, opts[:body]
-        raise Hubspot::RequestError, response unless response.success?
+        handle_errors response unless response.success?
 
         no_parse ? response : response.parsed_response
       end
@@ -31,7 +31,7 @@ module Hubspot
         url = generate_url(path, opts[:params])
         response = put(url, body: opts[:body].to_json, headers: { 'Content-Type' => 'application/json' }, format: :json)
         log_request_and_response url, response, opts[:body]
-        raise Hubspot::RequestError, response unless response.success?
+        handle_errors response unless response.success?
         response.parsed_response
       end
 
@@ -41,11 +41,17 @@ module Hubspot
         url = generate_url(path, opts)
         response = delete(url, format: :json)
         log_request_and_response url, response, opts[:body]
-        raise Hubspot::RequestError, response unless response.success?
+        handle_errors response unless response.success?
         response
       end
 
       protected
+
+      # Method to raise the appropriate request error
+      def handle_errors(response)
+        raise Hubspot::AuthenticationError, response if response.code == 401
+        raise Hubspot::RequestError, response
+      end
 
       def set_oauth2_headers
         # TODO: Better to have different connection strategies depending on configuration
