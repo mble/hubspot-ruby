@@ -1,6 +1,7 @@
 module Hubspot
   class Connection
     include HTTParty
+    headers 'Authorization' => "Bearer #{oauth2_access_token}"
 
     class << self
       def get_json(path, opts)
@@ -40,20 +41,24 @@ module Hubspot
 
       protected
 
+      def oauth2_access_token
+        "COzNiqagKxICEQEY_4uvASCOzOsBKJG3AjIZAEL7khOoZTLNPvINM8yjBDYpoeslNQe5ig"
+      end
+
       def log_request_and_response(uri, response, body = nil)
         Hubspot::Config.logger.info "Hubspot: #{uri}.\nBody: #{body}.\nResponse: #{response.code} #{response.body}"
       end
 
       def generate_url(path, params = {}, options = {})
-        Hubspot::Config.ensure! :hapikey
+        Hubspot::Config.ensure! :hapikey unless Hubspot::Config.use_oauth2
         path = path.clone
         params = params.clone
         base_url = options[:base_url] || Hubspot::Config.base_url
-        params['hapikey'] = Hubspot::Config.hapikey unless options[:hapikey] == false
+        params['hapikey'] = Hubspot::Config.hapikey unless options[:hapikey] == false || Hubspot::Config.use_oauth2
 
         if path =~ /:portal_id/
           Hubspot::Config.ensure! :portal_id
-          params['portal_id'] = Hubspot::Config.portal_id if path =~ /:portal_id/
+          params['portal_id'] = Hubspot::Config.portal_id
         end
 
         params.each do |k, v|

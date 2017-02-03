@@ -67,6 +67,13 @@ describe Hubspot::Connection do
         end
       end
 
+      context 'when OAuth2 is being used' do
+        before { Hubspot.configure(use_oauth2: true) }
+        it 'does not raise a config error' do
+          expect { subject }.to_not raise_error Hubspot::ConfigurationError
+        end
+      end
+
       context 'with interpolations but no params' do
         let(:params) { {} }
         it 'raises an interpolation exception' do
