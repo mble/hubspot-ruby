@@ -2,7 +2,7 @@ require 'logger'
 
 module Hubspot
   class Config
-    CONFIG_KEYS = [:hapikey, :use_oauth2, :base_url, :portal_id, :logger]
+    CONFIG_KEYS = %i(hapikey use_oauth2 oauth2_access_token base_url portal_id logger)
     DEFAULT_LOGGER = Logger.new('/dev/null')
     DEFAULT_BASE_URL = 'https://api.hubapi.com'.freeze
 
@@ -12,6 +12,7 @@ module Hubspot
       def configure(config)
         @hapikey = config[:hapikey]
         @use_oauth2 = config[:use_oauth2]
+        @oauth2_access_token = config[:oauth2_access_token]
         @base_url = config[:base_url] || DEFAULT_BASE_URL
         @portal_id = config[:portal_id]
         @logger = config[:logger] || DEFAULT_LOGGER

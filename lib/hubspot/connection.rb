@@ -1,10 +1,11 @@
 module Hubspot
   class Connection
     include HTTParty
-    headers 'Authorization' => "Bearer #{oauth2_access_token}"
 
     class << self
       def get_json(path, opts)
+        set_oauth2_headers
+
         url = generate_url(path, opts)
         response = get(url, format: :json)
         log_request_and_response url, response
@@ -14,6 +15,7 @@ module Hubspot
 
       def post_json(path, opts)
         no_parse = opts[:params].delete(:no_parse) { false }
+        set_oauth2_headers
 
         url = generate_url(path, opts[:params])
         response = post(url, body: opts[:body].to_json, headers: { 'Content-Type' => 'application/json' }, format: :json)
@@ -24,6 +26,8 @@ module Hubspot
       end
 
       def put_json(path, opts)
+        set_oauth2_headers
+
         url = generate_url(path, opts[:params])
         response = put(url, body: opts[:body].to_json, headers: { 'Content-Type' => 'application/json' }, format: :json)
         log_request_and_response url, response, opts[:body]
@@ -32,6 +36,8 @@ module Hubspot
       end
 
       def delete_json(path, opts)
+        set_oauth2_headers
+
         url = generate_url(path, opts)
         response = delete(url, format: :json)
         log_request_and_response url, response, opts[:body]
@@ -41,8 +47,45 @@ module Hubspot
 
       protected
 
-      def oauth2_access_token
-        "COzNiqagKxICEQEY_4uvASCOzOsBKJG3AjIZAEL7khOoZTLNPvINM8yjBDYpoeslNQe5ig"
+      def set_oauth2_headers
+        raise Hubspot::ConfigurationError, 'OAuth2 access token must be provided when using OAuth2' if Hubspot::Config.use_oauth2 && !oauth2_usage_valid?
+        headers 'Authorization' => "Bearer #{Hubspot::Config.oauth2_access_token}" if Hubspot::Config.use_oauth2 && oauth2_usage_valid?
+      end
+
+      def set_hapikey(params)
+        params['hapikey'] = Hubspot::Config.hapikey
+      end
+
+      def set_portal_id(path, params)
+        if path =~ /:portal_id/
+          Hubspot::Config.ensure! :portal_id
+          params['portal_id'] = Hubspot::Config.portal_id
+        end
+      end
+
+      def oauth2_usage_valid?
+        Hubspot::Config.oauth2_access_token.present? &&
+        Hubspot::Config.hapikey.blank?
+      end
+
+      def disable_hapikey_auth?(options)
+        options[:hapikey] == false || Hubspot::Config.use_oauth2
+      end
+
+      def interpolate_path(path, params)
+        params.each do |k, v|
+          if path.match(":#{k}")
+            path.gsub!(":#{k}", CGI.escape(v.to_s))
+            params.delete(k)
+          end
+        end
+        raise Hubspot::MissingInterpolation, 'Interpolation not resolved' if path =~ /:/
+      end
+
+      def generate_query(params)
+        params.map do |k, v|
+          v.is_a?(Array) ? v.map { |value| param_string(k, value) } : param_string(k, v)
+        end.join('&')
       end
 
       def log_request_and_response(uri, response, body = nil)
@@ -54,24 +97,12 @@ module Hubspot
         path = path.clone
         params = params.clone
         base_url = options[:base_url] || Hubspot::Config.base_url
-        params['hapikey'] = Hubspot::Config.hapikey unless options[:hapikey] == false || Hubspot::Config.use_oauth2
 
-        if path =~ /:portal_id/
-          Hubspot::Config.ensure! :portal_id
-          params['portal_id'] = Hubspot::Config.portal_id
-        end
+        set_hapikey(params) unless disable_hapikey_auth? options
+        set_portal_id path, params
+        interpolate_path path, params
 
-        params.each do |k, v|
-          if path.match(":#{k}")
-            path.gsub!(":#{k}", CGI.escape(v.to_s))
-            params.delete(k)
-          end
-        end
-        raise Hubspot::MissingInterpolation, 'Interpolation not resolved' if path =~ /:/
-
-        query = params.map do |k, v|
-          v.is_a?(Array) ? v.map { |value| param_string(k, value) } : param_string(k, v)
-        end.join('&')
+        query = generate_query params
 
         path += path.include?('?') ? '&' : '?' if query.present?
         base_url + path + query
