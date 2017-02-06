@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.hubapi.com/companies/v2/companies/
+    body:
+      encoding: UTF-8
+      string: '{"properties":[{"name":"domain","value":"new-company-domain-1486140423"},{"name":"name","value":"New
+        Company with Params 1486140423"}]}'
+    headers:
+      Authorization:
+      - Bearer CLC_oK2gKxICEQEYs-gDILqTDSiRtwIyGQBC-5IT1m0sMv7-biuemlnQWqVSxd0qzOQ
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Content-Length:
+      - '801'
+      Date:
+      - Fri, 03 Feb 2017 16:47:03 GMT
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"portalId":62515,"companyId":274136281,"isDeleted":false,"properties":{"domain":{"value":"new-company-domain-1486140423","timestamp":1486140423604,"source":"API","sourceId":null,"versions":[{"name":"domain","value":"new-company-domain-1486140423","timestamp":1486140423604,"source":"API","sourceVid":[]}]},"name":{"value":"New
+        Company with Params 1486140423","timestamp":1486140423604,"source":"API","sourceId":null,"versions":[{"name":"name","value":"New
+        Company with Params 1486140423","timestamp":1486140423604,"source":"API","sourceVid":[]}]},"createdate":{"value":"1486140423604","timestamp":1486140423604,"source":"API","sourceId":"API","versions":[{"name":"createdate","value":"1486140423604","timestamp":1486140423604,"sourceId":"API","source":"API","sourceVid":[]}]}},"additionalDomains":[]}'
+    http_version: 
+  recorded_at: Fri, 03 Feb 2017 16:47:03 GMT
+recorded_with: VCR 2.4.0

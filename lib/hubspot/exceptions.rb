@@ -10,6 +10,18 @@ module Hubspot
     end
   end
 
+  class AuthenticationError < StandardError
+    attr_accessor :message, :status, :engagement
+
+    def initialize(response)
+      parsed = response.parsed_response
+      @engagement = parsed['engagement']
+      @message = parsed['message']
+      @status = parsed['status']
+      super "status: #{@status} message: #{@message} engagement_info: #{@engagement}"
+    end
+  end
+
   class ConfigurationError < StandardError; end
   class MissingInterpolation < StandardError; end
   class ContactExistsError < RequestError; end
